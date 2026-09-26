@@ -1,20 +1,19 @@
-# schema.py 
-# Common schema every dataset adapter normalizes into.
+# schema.py
+# Common schema a dataset adapter normalizes to.
 
 import json
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, Optional
 
+
 @dataclass
 class Listing:
     id: str
-    text: str                                    # concatenated text for BM25 / embeddings
+    text: str                                              # concatenated text for BM25 / embeddings
     filters: Dict[str, Any] = field(default_factory=dict)  # structured, filterable attributes
-    source: Dict[str, Any] = field(default_factory=dict)   # original raw row, kept for debugging
+    source: Dict[str, Any] = field(default_factory=dict)   # original raw row
 
     def to_record(self) -> Dict[str, Any]:
-        """Flat, parquet-safe form -- dict fields get JSON-encoded so pyarrow
-        doesn't choke on inconsistent per-row schemas."""
         return {
             "id": self.id,
             "text": self.text,
@@ -48,10 +47,9 @@ class Query:
 
 @dataclass
 class Judgment:
-    """One (query, listing) relevance label from a benchmark's ground truth."""
     query_id: str
     listing_id: str
-    label: str  # raw string, e.g. "Exact" -- gain mapping happens later in eval/, not here
+    label: str
 
     def to_record(self) -> Dict[str, Any]:
         return asdict(self)
