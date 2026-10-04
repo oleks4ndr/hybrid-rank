@@ -1,2 +1,27 @@
 # metrics.py
 # ndcg@k, precision@k, mrr — gain scheme is a parameter, not hardcoded
+
+import math
+from typing import Dict, List, Set
+
+
+def ndcg_at_k(ranked_ids: List[str], relevance: Dict[str, float], k: int = 10) -> float:
+    def dcg(ids):
+        return sum(relevance.get(pid, 0.0) / math.log2(i + 2) for i, pid in enumerate(ids[:k]))
+
+    ideal_order = sorted(relevance, key=relevance.get, reverse=True)
+    idcg = dcg(ideal_order)
+    return dcg(ranked_ids) / idcg if idcg > 0 else 0.0
+
+
+def precision_at_k(ranked_ids: List[str], relevant_ids: Set[str], k: int = 5) -> float:
+    if k == 0:
+        return 0.0
+    return sum(1 for pid in ranked_ids[:k] if pid in relevant_ids) / k
+
+
+def mrr(ranked_ids: List[str], relevant_ids: Set[str]) -> float:
+    for i, pid in enumerate(ranked_ids, start=1):
+        if pid in relevant_ids:
+            return 1.0 / i
+    return 0.0
