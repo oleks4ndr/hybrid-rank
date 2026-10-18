@@ -1,5 +1,5 @@
 # metrics.py
-# ndcg@k, precision@k, mrr — gain scheme is a parameter, not hardcoded
+# ndcg@k, precision@k, mrr, recall@k — gain scheme is a parameter, not hardcoded
 
 import math
 from typing import Dict, List, Set
@@ -9,7 +9,7 @@ def ndcg_at_k(ranked_ids: List[str], relevance: Dict[str, float], k: int = 10) -
     def dcg(ids):
         return sum(relevance.get(pid, 0.0) / math.log2(i + 2) for i, pid in enumerate(ids[:k]))
 
-    ideal_order = sorted(relevance, key=relevance.get, reverse=True)
+    ideal_order = sorted(relevance, key=lambda pid: relevance[pid], reverse=True)
     idcg = dcg(ideal_order)
     return dcg(ranked_ids) / idcg if idcg > 0 else 0.0
 
@@ -25,3 +25,10 @@ def mrr(ranked_ids: List[str], relevant_ids: Set[str]) -> float:
         if pid in relevant_ids:
             return 1.0 / i
     return 0.0
+
+
+def recall_at_k(ranked_ids: List[str], relevant_ids: Set[str], k: int = 100) -> float:
+    # undefined when nothing is relevant -- nan so the caller's mean skips the query
+    if not relevant_ids:
+        return float("nan")
+    return len(relevant_ids.intersection(ranked_ids[:k])) / len(relevant_ids)

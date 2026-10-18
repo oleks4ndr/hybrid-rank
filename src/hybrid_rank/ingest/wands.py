@@ -12,6 +12,7 @@ from hybrid_rank.schema import Judgment, Listing, Query
 
 BASE_URL = "https://github.com/wayfair/WANDS/raw/main/dataset/"
 FILES = ("product.csv", "query.csv", "label.csv")
+LABEL_RANK = {"Irrelevant": 0, "Partial": 1, "Exact": 2}
 
 
 def _parse_features(raw: Any) -> Dict[str, str]:
@@ -27,6 +28,13 @@ def _parse_features(raw: Any) -> Dict[str, str]:
         if key and value:
             features[key] = value
     return features
+
+
+def _dedupe_labels(df_labels: pd.DataFrame) -> pd.DataFrame:
+    # label.csv repeats some (query, product) pairs, a few with conflicting labels -- keep the highest
+    ranked = df_labels.assign(_rank=df_labels["label"].map(LABEL_RANK))
+    deduped = ranked.sort_values("_rank").drop_duplicates(["query_id", "product_id"], keep="last")
+    return deduped.drop(columns="_rank")
 
 
 class WandsAdapter(DatasetAdapter):
@@ -45,7 +53,7 @@ class WandsAdapter(DatasetAdapter):
     def to_common_schema(self) -> Tuple[List[Listing], List[Query], List[Judgment]]:
         df_products = pd.read_csv(self.raw_dir / "product.csv", sep="\t")
         df_queries = pd.read_csv(self.raw_dir / "query.csv", sep="\t")
-        df_labels = pd.read_csv(self.raw_dir / "label.csv", sep="\t")
+        df_labels = _dedupe_labels(pd.read_csv(self.raw_dir / "label.csv", sep="\t"))
 
         listings = [self._to_listing(row) for _, row in df_products.iterrows()]
         queries = [
@@ -63,14 +71,15 @@ class WandsAdapter(DatasetAdapter):
         filters = {
             **_parse_features(row.get("product_features")),
             "product_class": row.get("product_class"),
-            "category_hierarchy": row.get("category_hierarchy"),
+            "category_hierarchy": row.get("category hierarchy"),  # raw column name has a space
             "average_rating": row.get("average_rating"),
             "rating_count": row.get("rating_count"),
         }
         filters = {k: v for k, v in filters.items() if pd.notna(v)}
 
+        # pd.notna, not `or ""`: NaN is truthy and would otherwise become the literal token "nan"
         text = " ".join(
-            str(row.get(f, "") or "") for f in ("product_name", "product_class", "product_description")
+            str(row[f]) for f in ("product_name", "product_class", "product_description") if pd.notna(row.get(f))
         ).strip()
 
         source = {str(key): value for key, value in row.to_dict().items()}

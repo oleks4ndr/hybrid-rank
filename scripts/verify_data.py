@@ -46,10 +46,16 @@ def main():
     empty_text = (df_listings["text"].str.strip() == "").sum()
     empty_filters = (df_listings["filters"] == "{}").sum()
     orphans = (~df_judgments["listing_id"].isin(df_listings["id"])).sum()
+    nan_text = df_listings["text"].str.contains(r"\bnan\b").sum()
+    with_hierarchy = df_listings["filters"].str.contains('"category_hierarchy"').sum()
+    dup_judgments = df_judgments.duplicated(["query_id", "listing_id"]).sum()
 
     print(f"Listings with empty text: {empty_text}")
     print(f"Listings with zero parsed filters: {empty_filters} ({empty_filters/len(df_listings):.1%})")
     print(f"Judgments pointing at missing listings: {orphans}")
+    print(f"Listings with literal 'nan' in text: {nan_text}")
+    print(f"Listings with category_hierarchy filter: {with_hierarchy} ({with_hierarchy/len(df_listings):.1%})")
+    print(f"Duplicate (query, listing) judgments: {dup_judgments}")
 
 
 if __name__ == "__main__":

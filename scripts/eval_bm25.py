@@ -1,7 +1,8 @@
-# usage: python scripts/eval_bm25.py wands
+# usage: python scripts/eval_bm25.py wands [--split dev|test|all]
 
 import argparse
 
+from hybrid_rank.eval.gain_schemes import GAIN_SCHEMES
 from hybrid_rank.eval.run_eval import evaluate, load_processed
 from hybrid_rank.retrieval.bm25 import BM25Index
 
@@ -9,17 +10,16 @@ from hybrid_rank.retrieval.bm25 import BM25Index
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("dataset", choices=["wands"])
-    parser.add_argument("--top-k", type=int, default=50)
-    parser.add_argument("--ndcg-k", type=int, default=10)
+    parser.add_argument("--split", choices=["dev", "test", "all"], default="all")
     args = parser.parse_args()
 
-    listings, _, _ = load_processed(args.dataset)
+    listings, queries, df_judgments = load_processed(args.dataset, split=args.split)
     print(f"Building BM25 index over {len(listings):,} listings ...")
     index = BM25Index(listings)
 
-    results = evaluate(args.dataset, search_fn=index.search, top_k=args.top_k, ndcg_k=args.ndcg_k)
-    print("\nResults:")
-    for k, v in results.items():
+    result = evaluate(queries, df_judgments, search_fn=index.search, gain=GAIN_SCHEMES[args.dataset])
+    print(f"\nResults ({args.split}):")
+    for k, v in result.summary.items():
         print(f"  {k}: {v:.4f}" if isinstance(v, float) else f"  {k}: {v}")
 
 

@@ -7,6 +7,7 @@ import argparse
 
 import pandas as pd
 
+from hybrid_rank.eval.splits import save_split_if_missing, split_path
 from hybrid_rank.ingest.wands import WandsAdapter
 
 ADAPTERS = {"wands": WandsAdapter}
@@ -33,6 +34,11 @@ def main():
     print(f"Queries:   {len(queries):,}")
     print(f"Judgments: {len(judgments):,}")
     print(f"Saved to {adapter.processed_dir}/")
+
+    if save_split_if_missing(args.dataset, [q.id for q in queries]):
+        print(f"Wrote dev/test split to {split_path(args.dataset)}")
+    else:
+        print(f"Keeping existing split {split_path(args.dataset)}")
 
 
 if __name__ == "__main__":
