@@ -24,6 +24,9 @@ data/processed/
 *.csv
 *.tsv
 
+# Per-run rankings (results/summary.jsonl is committed)
+results/runs/
+
 # Model / embedding caches
 .cache/
 *.faiss

@@ -2,7 +2,7 @@
 name = "hybrid-rank"
 version = "0.0.1"
 requires-python = ">=3.10"
-dependencies = ["pandas>=2.0", "pyarrow>=14.0", "rank-bm25", "numpy", "tqdm"]
+dependencies = ["pandas>=2.0", "pyarrow>=14.0", "rank-bm25", "numpy", "tqdm", "sentence-transformers"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
