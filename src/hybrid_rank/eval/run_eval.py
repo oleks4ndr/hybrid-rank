@@ -43,6 +43,7 @@ def evaluate(
     ndcg_ks: Sequence[int] = (10, 50),
     p_k: int = 5,
     recall_ks: Sequence[int] = (50, 100),
+    show_progress: bool = True,
 ) -> EvalResult:
     """Full-corpus eval: anything judged relevant but never retrieved scores 0.
 
@@ -56,7 +57,7 @@ def evaluate(
     judgments_by_query = df_judgments.groupby("query_id")
 
     rows, rankings = [], {}
-    for query in tqdm(queries, desc="Evaluating"):
+    for query in tqdm(queries, desc="Evaluating", disable=not show_progress):
         if query.id not in judgments_by_query.groups:
             continue
         q_judgments = judgments_by_query.get_group(query.id)

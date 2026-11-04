@@ -1,5 +1,5 @@
 # query.py
-# CLI: BM25 and dense top-k for one or more queries, for manual inspection.
+# CLI: BM25, dense and RRF top-k for one or more queries, for manual inspection.
 # If a query exactly matches a judged query, each result shows its label (E/P/I, - = unjudged).
 #
 # usage: python scripts/query.py wands "salon chair" "outdoor lounge cushions" --model minilm
@@ -9,6 +9,7 @@ import argparse
 from hybrid_rank.eval.run_eval import load_processed
 from hybrid_rank.retrieval.bm25 import BM25Index
 from hybrid_rank.retrieval.embed import ENCODERS, DenseIndex, embeddings_dir
+from hybrid_rank.retrieval.rrf import RRFRetriever
 
 
 def main():
@@ -24,10 +25,9 @@ def main():
     query_id_by_text = {q.text: q.id for q in queries}
     labels = dict(zip(zip(df_judgments["query_id"], df_judgments["listing_id"]), df_judgments["label"]))
 
-    retrievers = {
-        "bm25": BM25Index(listings),
-        f"dense-{args.model}": DenseIndex(listings, ENCODERS[args.model], embeddings_dir(args.dataset)),
-    }
+    bm25 = BM25Index(listings)
+    dense = DenseIndex(listings, ENCODERS[args.model], embeddings_dir(args.dataset))
+    retrievers = {"bm25": bm25, f"dense-{args.model}": dense, f"rrf-{args.model}": RRFRetriever([bm25, dense])}
 
     for query_text in args.queries:
         qid = query_id_by_text.get(query_text)
