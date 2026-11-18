@@ -8,7 +8,14 @@ from typing import Any, Callable, Dict, List, Sequence, cast
 import pandas as pd
 from tqdm import tqdm
 
-from hybrid_rank.eval.metrics import mrr, ndcg_at_k, precision_at_k, recall_at_k
+from hybrid_rank.eval.metrics import (
+    condensed_ndcg_at_k,
+    mrr,
+    ndcg_at_k,
+    precision_at_k,
+    recall_at_k,
+    unlabelled_at_k,
+)
 from hybrid_rank.eval.splits import load_split
 from hybrid_rank.schema import Listing, Query
 
@@ -51,6 +58,10 @@ def evaluate(
     Recall@k counts only top-grade items (Exact on WANDS): queries average ~300 Partial
     labels, so recall over Partial would be capped far below 1. Queries with no top-grade
     item have undefined recall and are left out of its mean (see n_queries_recall).
+
+    Plain nDCG counts unlabelled results as irrelevant, which penalizes systems that surface
+    listings the label pool never saw. cnDCG@k ignores them instead, and unlabelled@k says how
+    much of the top k that affects -- plain and condensed nDCG bound the truth from both sides.
     """
     top_k = max(*ndcg_ks, p_k, *recall_ks)
     top_gain = max(gain.values())
@@ -78,6 +89,8 @@ def evaluate(
         row["MRR"] = mrr(ranked, relevant_ids)
         for k in recall_ks:
             row[f"R@{k}"] = recall_at_k(ranked, top_grade_ids, k=k)
+        row[f"cnDCG@{ndcg_ks[0]}"] = condensed_ndcg_at_k(ranked, relevance, k=ndcg_ks[0])
+        row[f"unlabelled@{ndcg_ks[0]}"] = unlabelled_at_k(ranked, relevance, k=ndcg_ks[0])
         rows.append(row)
 
     per_query = pd.DataFrame(rows)

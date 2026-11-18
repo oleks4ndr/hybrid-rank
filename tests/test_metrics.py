@@ -5,7 +5,14 @@ import math
 
 import pytest
 
-from hybrid_rank.eval.metrics import mrr, ndcg_at_k, precision_at_k, recall_at_k
+from hybrid_rank.eval.metrics import (
+    condensed_ndcg_at_k,
+    mrr,
+    ndcg_at_k,
+    precision_at_k,
+    recall_at_k,
+    unlabelled_at_k,
+)
 
 IDCG_1_HALF = 1.0 + 0.5 / math.log2(3)  # ideal DCG for gains {1.0, 0.5}
 
@@ -52,3 +59,20 @@ def test_recall():
 
 def test_recall_undefined_without_relevant_items():
     assert math.isnan(recall_at_k(["a"], set(), k=10))
+
+
+def test_condensed_ndcg_skips_unlabelled_but_keeps_labelled_irrelevant():
+    relevance = {"a": 1.0, "b": 0.5, "z": 0.0}
+    ranked = ["x", "z", "y", "b", "a"]
+    # x, y unlabelled -> dropped; z labelled irrelevant -> kept, so the list scored is [z, b, a]
+    dcg = 0.0 + 0.5 / math.log2(3) + 1.0 / 2
+    assert condensed_ndcg_at_k(ranked, relevance, k=3) == pytest.approx(dcg / IDCG_1_HALF)
+    # plain nDCG only sees [x, z, y] in its top 3, all worth 0
+    assert ndcg_at_k(ranked, relevance, k=3) == 0.0
+
+
+def test_unlabelled_share():
+    relevance = {"a": 1.0, "z": 0.0}
+    assert unlabelled_at_k(["a", "x", "z", "y"], relevance, k=4) == pytest.approx(0.5)
+    assert unlabelled_at_k(["x"], relevance, k=10) == pytest.approx(1.0)  # share of what was returned
+    assert math.isnan(unlabelled_at_k([], relevance, k=10))
