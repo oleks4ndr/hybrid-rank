@@ -3,7 +3,7 @@
 
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from hybrid_rank.schema import Judgment, Listing, Query
 
@@ -22,3 +22,7 @@ class DatasetAdapter(ABC):
     @abstractmethod
     def to_common_schema(self) -> Tuple[List[Listing], List[Query], List[Judgment]]:
         """Parse self.raw_dir's files into the common Listing/Query/Judgment schema"""
+
+    def official_split(self) -> Optional[Dict[str, Any]]:
+        """The benchmark's own query split ({name: [query ids]}), or None to draw a random dev/test split"""
+        return None

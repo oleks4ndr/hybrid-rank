@@ -4,6 +4,7 @@
 # usage: python scripts/eval.py wands --retriever bm25 --split test
 #        python scripts/eval.py wands --retriever dense --model minilm --split dev
 #        python scripts/eval.py wands --retriever rrf --model minilm --split dev
+#        python scripts/eval.py stark-amazon --retriever bm25 --split dev   # splits: dev, test, test-0.1, human
 
 import argparse
 import json
@@ -13,9 +14,9 @@ from pathlib import Path
 
 import pandas as pd
 
-from hybrid_rank.eval.gain_schemes import GAIN_SCHEMES
+from hybrid_rank.eval.config import EVAL_CONFIGS
 from hybrid_rank.eval.run_eval import EvalResult, evaluate, load_processed
-from hybrid_rank.retrieval.bm25 import BM25Index
+from hybrid_rank.retrieval.bm25 import IDF_VARIANTS, BM25Index, bm25_dir
 from hybrid_rank.retrieval.embed import ENCODERS, DenseIndex, embeddings_dir
 from hybrid_rank.retrieval.rrf import DEFAULT_DEPTH, DEFAULT_K, RRFRetriever
 
@@ -23,16 +24,24 @@ RESULTS_DIR = Path("results")
 SUMMARY_PATH = RESULTS_DIR / "summary.jsonl"
 
 
+def build_bm25(args, listings):
+    index = BM25Index(listings, cache_dir=bm25_dir(args.dataset), idf=args.bm25_idf)
+    print(f"  BM25 index {'loaded from' if index.loaded_from_cache else 'built and saved to'} {index.cache_path}")
+    return index
+
+
 def build_retriever(args, listings):
+    # "bm25" means the default (lucene idf); other variants are named in the run, so logs never mix them
+    variant = "" if args.bm25_idf == "lucene" else f"-{args.bm25_idf}"
     if args.retriever == "bm25":
-        return "bm25", BM25Index(listings)
+        return f"bm25{variant}", build_bm25(args, listings)
     index = DenseIndex(listings, ENCODERS[args.model], embeddings_dir(args.dataset))
     source = "loaded from" if index.loaded_from_cache else "encoded and saved to"
     print(f"  {index.spec.name} on {index.model.device}, embeddings {source} {index.cache_path}")
     if args.retriever == "dense":
         return f"dense-{args.model}", index
-    retriever = RRFRetriever([BM25Index(listings), index], k=args.rrf_k, depth=args.depth)
-    return f"rrf-{args.model}-k{args.rrf_k}-d{args.depth}", retriever
+    retriever = RRFRetriever([build_bm25(args, listings), index], k=args.rrf_k, depth=args.depth)
+    return f"rrf-{args.model}-k{args.rrf_k}-d{args.depth}{variant}", retriever
 
 
 def git_commit() -> str:
@@ -72,19 +81,20 @@ def log_summary(result: EvalResult, dataset: str, system: str, split: str) -> No
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("dataset", choices=list(GAIN_SCHEMES))
+    parser.add_argument("dataset", choices=list(EVAL_CONFIGS))
     parser.add_argument("--retriever", choices=["bm25", "dense", "rrf"], required=True)
     parser.add_argument("--model", choices=list(ENCODERS), default="minilm", help="dense and rrf only")
     parser.add_argument("--rrf-k", type=int, default=DEFAULT_K, help="rrf only")
     parser.add_argument("--depth", type=int, default=DEFAULT_DEPTH, help="rrf only: candidates from each retriever")
-    parser.add_argument("--split", choices=["dev", "test", "all"], default="dev")
+    parser.add_argument("--bm25-idf", choices=IDF_VARIANTS, default="lucene", help="bm25 and rrf only")
+    parser.add_argument("--split", default="dev", help="a split in data/splits/<dataset>.json, or 'all'")
     args = parser.parse_args()
 
     listings, queries, df_judgments = load_processed(args.dataset, split=args.split)
     print(f"Building {args.retriever} index over {len(listings):,} listings ...")
     system, retriever = build_retriever(args, listings)
 
-    result = evaluate(queries, df_judgments, search_fn=retriever.search, gain=GAIN_SCHEMES[args.dataset])
+    result = evaluate(queries, df_judgments, search_fn=retriever.search, config=EVAL_CONFIGS[args.dataset])
     print(f"\n{system} on {args.dataset}/{args.split}:")
     for k, v in result.summary.items():
         print(f"  {k}: {v:.4f}" if isinstance(v, float) else f"  {k}: {v}")

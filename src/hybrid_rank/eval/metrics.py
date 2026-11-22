@@ -1,5 +1,5 @@
 # metrics.py
-# ndcg@k, precision@k, mrr, recall@k, plus two views on unlabelled results — gain scheme is a parameter
+# ndcg@k, precision@k, hit@k, mrr, recall@k, plus two views on unlabelled results — gain scheme is a parameter
 
 import math
 from typing import Dict, List, Set
@@ -18,6 +18,11 @@ def precision_at_k(ranked_ids: List[str], relevant_ids: Set[str], k: int = 5) ->
     if k == 0:
         return 0.0
     return sum(1 for pid in ranked_ids[:k] if pid in relevant_ids) / k
+
+
+def hit_at_k(ranked_ids: List[str], relevant_ids: Set[str], k: int = 1) -> float:
+    # 1 if anything relevant is in the top k (STaRK's Hit@k)
+    return float(any(pid in relevant_ids for pid in ranked_ids[:k]))
 
 
 def mrr(ranked_ids: List[str], relevant_ids: Set[str]) -> float:

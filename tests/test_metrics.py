@@ -5,8 +5,10 @@ import math
 
 import pytest
 
+from hybrid_rank.eval.config import EVAL_CONFIGS
 from hybrid_rank.eval.metrics import (
     condensed_ndcg_at_k,
+    hit_at_k,
     mrr,
     ndcg_at_k,
     precision_at_k,
@@ -49,6 +51,21 @@ def test_precision_counts_short_lists_as_misses():
 def test_mrr():
     assert mrr(["x", "y", "a", "b"], {"a", "b"}) == pytest.approx(1 / 3)
     assert mrr(["x", "y"], {"a"}) == 0.0
+
+
+def test_hit_at_k():
+    assert hit_at_k(["x", "a"], {"a"}, k=1) == 0.0
+    assert hit_at_k(["x", "a"], {"a"}, k=2) == 1.0
+    assert hit_at_k([], {"a"}, k=5) == 0.0
+
+
+def test_eval_configs_keep_wands_metrics_and_match_stark_paper():
+    wands = EVAL_CONFIGS["wands"]
+    assert wands.metrics == ["nDCG@10", "nDCG@50", "P@5", "MRR", "R@50", "R@100", "cnDCG@10", "unlabelled@10"]
+    stark = EVAL_CONFIGS["stark-amazon"]
+    assert {"Hit@1", "Hit@5", "R@20", "MRR"} <= set(stark.metrics)
+    assert not any(m.startswith(("cnDCG", "unlabelled")) for m in stark.metrics)
+    assert stark.depth == 100
 
 
 def test_recall():

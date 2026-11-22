@@ -2,10 +2,10 @@
 name = "hybrid-rank"
 version = "0.0.1"
 requires-python = ">=3.10"
-dependencies = ["pandas>=2.0", "pyarrow>=14.0", "rank-bm25", "numpy", "tqdm", "sentence-transformers", "scipy"]
+dependencies = ["pandas>=2.0", "pyarrow>=14.0", "numpy", "tqdm", "sentence-transformers", "scipy", "huggingface_hub"]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "rank-bm25"]  # rank-bm25: reference our BM25 is tested against
 
 [build-system]
 requires = ["setuptools>=68"]

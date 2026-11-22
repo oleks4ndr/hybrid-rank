@@ -15,7 +15,16 @@ class Retriever(Protocol):
 def top_k_ids(ids: List[str], scores: np.ndarray, top_k: int, mask: Optional[np.ndarray] = None) -> List[str]:
     """Exact top-k over every listing, ties broken by corpus order.
     Excluded listings are dropped, so a selective mask can return fewer than top_k."""
+    if top_k <= 0:
+        return []
     if mask is not None:
         scores = np.where(mask, scores, -np.inf)
-    order = np.argsort(-scores, kind="stable")[:top_k]
+    if top_k < len(scores):
+        # find the k-th best score in O(n), then stable-sort only what's at or above it -- same result as
+        # a full stable argsort, without sorting a ~1M-listing corpus for every query
+        kth = -np.partition(-scores, top_k - 1)[top_k - 1]
+        candidates = np.flatnonzero(scores >= kth) if np.isfinite(kth) else np.flatnonzero(np.isfinite(scores))
+        order = candidates[np.argsort(-scores[candidates], kind="stable")][:top_k]
+    else:
+        order = np.argsort(-scores, kind="stable")
     return [ids[i] for i in order if np.isfinite(scores[i])]

@@ -1,16 +1,18 @@
 # download_data.py
 # CLI: pick a domain, run its ingest adapter
-# 
+#
 # usage: python scripts/download_data.py wands
+#        python scripts/download_data.py stark-amazon   # 3.5 GB download; ~2 min and ~11 GB of RAM to convert
 
 import argparse
 
 import pandas as pd
 
 from hybrid_rank.eval.splits import save_split_if_missing, split_path
+from hybrid_rank.ingest.stark import StarkAmazonAdapter
 from hybrid_rank.ingest.wands import WandsAdapter
 
-ADAPTERS = {"wands": WandsAdapter}
+ADAPTERS = {"wands": WandsAdapter, "stark-amazon": StarkAmazonAdapter}
 
 
 def main():
@@ -35,8 +37,8 @@ def main():
     print(f"Judgments: {len(judgments):,}")
     print(f"Saved to {adapter.processed_dir}/")
 
-    if save_split_if_missing(args.dataset, [q.id for q in queries]):
-        print(f"Wrote dev/test split to {split_path(args.dataset)}")
+    if save_split_if_missing(args.dataset, [q.id for q in queries], adapter.official_split()):
+        print(f"Wrote split to {split_path(args.dataset)}")
     else:
         print(f"Keeping existing split {split_path(args.dataset)}")
 
