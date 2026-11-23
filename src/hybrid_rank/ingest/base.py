@@ -5,11 +5,13 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from hybrid_rank.schema import Judgment, Listing, Query
+from hybrid_rank.schema import FilterField, Judgment, Listing, Query
 
 
 class DatasetAdapter(ABC):
     name: str
+    catalog_description: str = ""               # one line telling the LLM what the catalog sells
+    filter_fields: Tuple[FilterField, ...] = ()  # attributes a query can hard-filter on, highest priority first
 
     def __init__(self, data_dir: Path = Path("data")):
         self.raw_dir = data_dir / "raw" / self.name

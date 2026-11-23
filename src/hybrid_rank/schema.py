@@ -5,6 +5,27 @@ import json
 from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, Optional
 
+FIELD_KINDS = ("text", "number")
+MATCH_MODES = ("contains", "prefix")
+
+
+@dataclass(frozen=True)
+class FilterField:
+    """An attribute in Listing.filters that a query can constrain. Adapters declare these; the decomposition
+    prompt and the hard filters are built from them, so nothing downstream is dataset-specific."""
+
+    name: str                 # key in Listing.filters; its values are a string, a list of strings, or a number
+    kind: str                 # "text" or "number"
+    description: str          # what the field means in this catalog -- the LLM reads this
+    match: str = "contains"   # text only: "contains" = every word of the query value appears in the catalog
+                              # value; "prefix" = the catalog value starts with it (names: brands, makers)
+
+    def __post_init__(self):
+        if self.kind not in FIELD_KINDS:
+            raise ValueError(f"kind must be one of {FIELD_KINDS}, got {self.kind!r}")
+        if self.match not in MATCH_MODES:
+            raise ValueError(f"match must be one of {MATCH_MODES}, got {self.match!r}")
+
 
 @dataclass
 class Listing:

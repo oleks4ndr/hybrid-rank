@@ -2,9 +2,9 @@
 
 ### Oleksandr
 
-Domain-agnostic retrieval pipeline for marketplace / product search: BM25 + dense retrieval fused with
-reciprocal rank fusion, with LLM query decomposition, hard filters and reranking to come. Every component
-is evaluated through one harness on two benchmarks.
+Domain-agnostic retrieval pipeline for marketplace / product search: LLM query decomposition and hard
+filters, then BM25 + dense retrieval fused with reciprocal rank fusion, with reranking to come. Every
+component is evaluated through one harness on two benchmarks.
 
 ## Benchmarks
 
@@ -39,6 +39,32 @@ python -m pytest -q
 
 Each eval run saves per-query results to `results/runs/` and appends a summary line (with the git commit)
 to `results/summary.jsonl`. Tune on dev, report on test once.
+
+## Query decomposition and hard filters
+
+An LLM turns each request into a cleaned search query plus constraints on the fields the dataset's adapter
+declares (`filter_fields`: STaRK brand / category / color / price, WANDS product_class / color / style).
+The constraints become a mask every retriever honours. Listings missing a field are kept, values match
+loosely (case, plural, spacing, `prefix` for names), unmatched values are skipped, and constraints are relaxed
+lowest-priority first if fewer than 10 listings survive (`src/hybrid_rank/filtering/hard_filter.py`).
+
+```bash
+# the only paid step: put ANTHROPIC_API_KEY=... in .env (git-ignored). Cached per query in
+# results/decompositions/, so re-runs resume
+python scripts/decompose.py stark-amazon --print-prompt              # see the prompt, no API calls
+python scripts/decompose.py stark-amazon --split dev --limit 5       # smoke test
+python scripts/decompose.py stark-amazon --split dev                 # default claude-haiku-5-5; --model to change
+
+# eval reads the cache; the run name records the switches (+rw, +f.<fields>, .strict)
+python scripts/eval.py stark-amazon --retriever rrf --model bge-small --filters brand
+python scripts/eval.py stark-amazon --retriever rrf --model bge-small --filters all --rewrite
+python scripts/eval.py stark-amazon --retriever rrf --model bge-small --filters brand --strict
+```
+
+Filtered runs also log `filtered` (share of queries with a filter applied), `retention` (share of their
+top-grade answers the filter kept) and `lost_all` (filtered queries left with no answer), and save a
+per-query trace to `results/runs/<dataset>/<run>_<split>.filters.parquet`. Commit
+`results/decompositions/` so every number can be reproduced without an API key.
 
 ## Caches
 

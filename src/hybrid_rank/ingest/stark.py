@@ -18,7 +18,7 @@ import pandas as pd
 from huggingface_hub import hf_hub_download
 
 from hybrid_rank.ingest.base import DatasetAdapter
-from hybrid_rank.schema import Judgment, Listing, Query
+from hybrid_rank.schema import FilterField, Judgment, Listing, Query
 
 REPO = "snap-stanford/stark"
 QA_DIR = "qa/amazon"
@@ -29,6 +29,21 @@ HUMAN_CSV = f"{QA_DIR}/stark_qa/stark_qa_human_generated_eval.csv"
 # STaRK split -> ours. Tune on val, report on test. test-0.1 is the 10% subset its LLM rerankers were scored on.
 SPLITS = {"train": "train", "val": "dev", "test": "test", "test-0.1": "test-0.1"}
 FILES = (QA_CSV, HUMAN_CSV, *(f"{QA_DIR}/split/{s}.index" for s in SPLITS), SKB_ZIP)
+
+# coverage over the 957,192 products: brand 90%, category 76%, price 42%, color 18%. On dev, 40% of queries
+# name an answer's brand, but many name it as context ("pairs well with my Igloo cooler" -> a Coleman), and
+# leagues / teams are the listed brand on some products only -- hence the brand description.
+FILTER_FIELDS = (
+    FilterField(
+        "brand", "text",
+        "The maker's brand name. Sports leagues, teams, schools and licensed characters (NFL, Green Bay Packers, "
+        "Hello Kitty) are themes, not brands: leave them out of this field.",
+        match="prefix",
+    ),
+    FilterField("category", "text", "The product category."),
+    FilterField("color", "text", "The product's color, as the seller listed it."),
+    FilterField("price", "number", "Price in US dollars."),
+)
 
 MAX_ENTRIES = 25  # stark_qa's default cap on reviews / Q&A per product (its loop keeps up to 27)
 META_NODE_KEYS = {"brand_name", "category_name", "color_name"}
@@ -138,6 +153,8 @@ def parse_qa(df: pd.DataFrame, id_prefix: str, category: str) -> Tuple[List[Quer
 
 class StarkAmazonAdapter(DatasetAdapter):
     name = "stark-amazon"
+    catalog_description = "Amazon Sports & Outdoors: sporting goods, outdoor gear, fan merchandise and apparel."
+    filter_fields = FILTER_FIELDS
 
     def fetch_raw(self) -> None:
         self.raw_dir.mkdir(parents=True, exist_ok=True)

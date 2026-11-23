@@ -1,6 +1,7 @@
 # run_eval.py
 # run any search_fn over a dataset's queries, report metrics
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Dict, List, cast
@@ -22,15 +23,12 @@ from hybrid_rank.eval.splits import load_split, split_names
 from hybrid_rank.schema import Listing, Query
 
 
-def load_processed(dataset: str, split: str = "all"):
-    """Listings are always the full corpus; only the queries are restricted to the split."""
-    processed_dir = Path("data/processed") / dataset
-    df_listings = pd.read_parquet(processed_dir / "listings.parquet")
-    df_queries = pd.read_parquet(processed_dir / "queries.parquet")
-    df_judgments = pd.read_parquet(processed_dir / "judgments.parquet")
+def processed_dir(dataset: str) -> Path:
+    return Path("data/processed") / dataset
 
-    listings = [Listing.from_record(cast(Dict[str, Any], r)) for r in df_listings.to_dict("records")]
-    del df_listings
+
+def load_queries(dataset: str, split: str = "all") -> List[Query]:
+    df_queries = pd.read_parquet(processed_dir(dataset) / "queries.parquet")
     queries = [Query.from_record(cast(Dict[str, Any], r)) for r in df_queries.to_dict("records")]
     if split != "all":
         splits = load_split(dataset)
@@ -38,6 +36,22 @@ def load_processed(dataset: str, split: str = "all"):
             raise SystemExit(f"{dataset} has no split {split!r}; it has: {', '.join(split_names(splits))}, all")
         keep = set(splits[split])
         queries = [q for q in queries if q.id in keep]
+    return queries
+
+
+def load_listing_filters(dataset: str) -> List[Dict[str, Any]]:
+    """Just the listings' filters, in corpus order -- skips loading the (on STaRK, ~1M long) texts."""
+    column = pd.read_parquet(processed_dir(dataset) / "listings.parquet", columns=["filters"])["filters"]
+    return [json.loads(s) if s else {} for s in column]
+
+
+def load_processed(dataset: str, split: str = "all"):
+    """Listings are always the full corpus; only the queries are restricted to the split."""
+    df_listings = pd.read_parquet(processed_dir(dataset) / "listings.parquet")
+    listings = [Listing.from_record(cast(Dict[str, Any], r)) for r in df_listings.to_dict("records")]
+    del df_listings
+    queries = load_queries(dataset, split)
+    df_judgments = pd.read_parquet(processed_dir(dataset) / "judgments.parquet")
     return listings, queries, df_judgments
 
 

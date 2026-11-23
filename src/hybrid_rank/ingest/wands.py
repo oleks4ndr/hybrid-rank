@@ -8,11 +8,18 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 
 from hybrid_rank.ingest.base import DatasetAdapter
-from hybrid_rank.schema import Judgment, Listing, Query
+from hybrid_rank.schema import FilterField, Judgment, Listing, Query
 
 BASE_URL = "https://github.com/wayfair/WANDS/raw/main/dataset/"
 FILES = ("product.csv", "query.csv", "label.csv")
 LABEL_RANK = {"Irrelevant": 0, "Partial": 1, "Exact": 2}
+
+# coverage over the 42,994 products: product_class 93%, style 39%, color under 39% and free-form (2,825 values)
+FILTER_FIELDS = (
+    FilterField("product_class", "text", "The product type."),
+    FilterField("color", "text", "The product's main color, as the seller listed it."),
+    FilterField("style", "text", "The design style."),
+)
 
 
 def _parse_features(raw: Any) -> Dict[str, str]:
@@ -39,6 +46,8 @@ def _dedupe_labels(df_labels: pd.DataFrame) -> pd.DataFrame:
 
 class WandsAdapter(DatasetAdapter):
     name = "wands"
+    catalog_description = "Wayfair: furniture, home decor, lighting, rugs and home improvement products."
+    filter_fields = FILTER_FIELDS
 
     def fetch_raw(self) -> None:
         self.raw_dir.mkdir(parents=True, exist_ok=True)

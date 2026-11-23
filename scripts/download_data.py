@@ -9,10 +9,7 @@ import argparse
 import pandas as pd
 
 from hybrid_rank.eval.splits import save_split_if_missing, split_path
-from hybrid_rank.ingest.stark import StarkAmazonAdapter
-from hybrid_rank.ingest.wands import WandsAdapter
-
-ADAPTERS = {"wands": WandsAdapter, "stark-amazon": StarkAmazonAdapter}
+from hybrid_rank.ingest.registry import ADAPTERS
 
 
 def main():
