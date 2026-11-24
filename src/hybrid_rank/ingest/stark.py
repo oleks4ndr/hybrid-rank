@@ -30,9 +30,9 @@ HUMAN_CSV = f"{QA_DIR}/stark_qa/stark_qa_human_generated_eval.csv"
 SPLITS = {"train": "train", "val": "dev", "test": "test", "test-0.1": "test-0.1"}
 FILES = (QA_CSV, HUMAN_CSV, *(f"{QA_DIR}/split/{s}.index" for s in SPLITS), SKB_ZIP)
 
-# coverage over the 957,192 products: brand 90%, category 76%, price 42%, color 18%. On dev, 40% of queries
-# name an answer's brand, but many name it as context ("pairs well with my Igloo cooler" -> a Coleman), and
-# leagues / teams are the listed brand on some products only -- hence the brand description.
+# coverage over the 957,192 products: brand 90%, category 76%, price 42%, color 18%. Queries also name brands
+# as context (a horseshoe set to "pair well with my Park & Sun net" -> a St. Pierre), and leagues / teams are
+# the listed brand on some products only -- hence the brand description.
 FILTER_FIELDS = (
     FilterField(
         "brand", "text",

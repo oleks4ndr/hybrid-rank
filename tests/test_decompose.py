@@ -113,3 +113,51 @@ def test_pipeline_switches():
     ]
     with pytest.raises(KeyError, match="decompose.py"):
         Pipeline(r, decs).search("never decomposed", 10)
+
+
+def test_v1_prompt_is_frozen_so_committed_caches_stay_valid(tmp_path):
+    assert decomposer(tmp_path).cache_path.name == "claude-haiku-5-5_e71c1112e0.jsonl"
+    v2 = Decomposer("toy", "A toy sports shop.", FIELDS, NOTES, cache_dir=tmp_path, prompt="v2")
+    assert v2.cache_path != decomposer(tmp_path).cache_path
+    assert "A toy sports shop." in v2.system and "{" not in v2.system
+
+
+def test_failed_run_leaves_no_cache_file_and_appends_after_a_cut_off_line(tmp_path):
+    d = decomposer(tmp_path)  # no replies: the first call raises
+    with pytest.raises(KeyError):
+        d.decompose_many(["anything"])
+    assert not d.cache_path.exists()
+    empty = {"semantic_query": "x", "filters": {"brand": [], "price": {"min": None, "max": None}}}
+    d.cache_path.write_text('{"query": "cut off mid-wri')
+    d = decomposer(tmp_path, {"red ball": ("end_turn", empty)})
+    d.decompose_many(["red ball"])
+    assert decomposer(tmp_path).missing(["red ball"]) == []  # not glued onto the broken line
+
+
+def test_grounded_prompt_judges_catalog_values_and_can_pick_none(tmp_path):
+    index = FilterIndex([{"brand": "Nike", "price": 30.0}, {"brand": "Igloo"}, {"brand": "Any"}], FIELDS)
+    none = {"min": None, "max": None}
+    replies = {
+        "any Nike cooler to go with my Igloo under $50": ("end_turn", {
+            "verdicts": [{"id": 1, "role": "context"}, {"id": 2, "role": "requirement"}, {"id": 3, "role": "not_meant"},
+                         {"id": 9, "role": "requirement"}],
+            "numbers": {"price": {"min": None, "max": 50}}}),
+        "a tent": ("end_turn", {"verdicts": [], "numbers": {"price": none}}),
+    }
+
+    class Client(FakeClient):
+        def create(self, **kwargs):
+            message = kwargs["messages"][0]["content"]
+            self.calls.append(message)
+            query = message.removeprefix("Search request: ").split("\n")[0]
+            stop_reason, payload = self.replies[query]
+            return SimpleNamespace(stop_reason=stop_reason, usage=SimpleNamespace(input_tokens=1, output_tokens=1),
+                                   content=[SimpleNamespace(type="text", text=json.dumps(payload))])
+
+    d = Decomposer("toy", "A shop.", FIELDS, NOTES, cache_dir=tmp_path, prompt="v3", index=index, client=Client(replies))
+    out = d.decompose_many(list(replies), workers=1)
+    assert [m[1] for m in d.mentions("any Nike cooler to go with my Igloo under $50")] == ["Igloo", "Nike", "Any"]
+    assert out["any Nike cooler to go with my Igloo under $50"].filters == {"brand": ["Nike"], "price": {"max": 50.0}}
+    assert out["a tent"].filters == {} and out["a tent"].semantic_query == "a tent"
+    assert "1. brand: Igloo (1 products)" in d.client.calls[0] and "(none)" in d.client.calls[1]
+    assert d.cache_path != decomposer(tmp_path).cache_path

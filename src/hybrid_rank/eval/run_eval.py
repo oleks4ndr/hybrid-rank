@@ -2,9 +2,10 @@
 # run any search_fn over a dataset's queries, report metrics
 
 import json
+import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Callable, Dict, List, cast
+from typing import Any, Callable, Dict, List, Optional, cast
 
 import pandas as pd
 from tqdm import tqdm
@@ -37,6 +38,11 @@ def load_queries(dataset: str, split: str = "all") -> List[Query]:
         keep = set(splits[split])
         queries = [q for q in queries if q.id in keep]
     return queries
+
+
+def sample_queries(queries: List[Query], n: Optional[int], seed: int = 0) -> List[Query]:
+    """A fixed random subset, e.g. of a large train split; None keeps every query."""
+    return queries if n is None or n >= len(queries) else random.Random(seed).sample(queries, n)
 
 
 def load_listing_filters(dataset: str) -> List[Dict[str, Any]]:

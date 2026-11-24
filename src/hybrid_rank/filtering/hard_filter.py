@@ -24,6 +24,8 @@ from hybrid_rank.schema import FilterField
 MISSING_POLICIES = ("keep", "drop")
 MIN_CANDIDATES = 10
 N_EXAMPLES = 12  # most common catalog values per text field, shown to the LLM
+MAX_NAME_WORDS = 7
+MIN_JOIN_LETTERS = 4
 
 Key = Tuple[str, ...]
 
@@ -62,6 +64,7 @@ class FilterIndex:
         self._by_token: Dict[str, Dict[str, List[Key]]] = {}       # word -> catalog values containing it
         self._by_joined: Dict[str, Dict[str, List[Key]]] = {}      # "trainingmask" -> ("training", "mask")
         self._examples: Dict[str, List[str]] = {}
+        self._spelling: Dict[str, Dict[Key, str]] = {}             # catalog value -> first spelling seen
         self._numbers: Dict[str, np.ndarray] = {}                  # value per listing, nan if missing
         self._resolved: Dict[Tuple[str, Key], List[Key]] = {}
         for f in fields:
@@ -101,6 +104,7 @@ class FilterIndex:
         self._rows[name] = {key: np.array(r, dtype=np.int64) for key, r in rows.items()}
         self._present[name] = present
         self._by_token[name], self._by_joined[name] = dict(by_token), dict(by_joined)
+        self._spelling[name] = spelling
         self._examples[name] = [spelling[key] for key, _ in counts.most_common(N_EXAMPLES)]
 
     def _index_number(self, name: str, filters: Sequence[Mapping[str, Any]]) -> None:
@@ -128,6 +132,34 @@ class FilterIndex:
         """Share of listings with a value for the field."""
         present = ~np.isnan(self._numbers[name]) if self.fields[name].kind == "number" else self._present[name]
         return float(present.mean()) if self.n else 0.0
+
+    def mentions(self, name: str, text: str) -> List[Tuple[str, int]]:
+        """Catalog values of a text field that the text names, as (spelling, number of listings), longest first.
+        Names ("prefix" fields) must appear as a run of words. A name inside a longer one is dropped unless both
+        start at the same word: "Creature skateboard" may mean Creature or Creature Skateboards. Other values need all their words anywhere in the text. High recall, not precision: ordinary words are
+        often brand names too, so something has to judge which mentions are meant."""
+        tokens = normalize(text)
+        if self.fields[name].match == "prefix":
+            spans: Dict[Tuple[int, int], List[Key]] = {}
+            for i in range(len(tokens)):
+                for j in range(i + 1, min(len(tokens), i + MAX_NAME_WORDS) + 1):
+                    words = tokens[i:j]
+                    # spacing variants ("training mask" / "TrainingMask") only between real words: joining
+                    # short ones invents names ("has a" -> "Hasa")
+                    joinable = len(words) == 1 or all(len(w) >= MIN_JOIN_LETTERS for w in words)
+                    keys = [k for k in self._by_joined[name].get("".join(words), []) if k == words or joinable]
+                    keys = [k for k in keys if len("".join(k)) > 1]
+                    if keys:
+                        spans[i, j] = keys
+            outer = [s for s in spans if not any(o[0] < s[0] and s[1] <= o[1] for o in spans)]
+            found = list(dict.fromkeys(k for s in outer for k in spans[s]))
+        else:
+            words = set(tokens)
+            found = list(dict.fromkeys(
+                k for w in dict.fromkeys(tokens) for k in self._by_token[name].get(w, []) if words.issuperset(k)
+            ))
+        found.sort(key=lambda k: -len(" ".join(k)))
+        return [(self._spelling[name][k], len(self._rows[name][k])) for k in found]
 
     def resolve(self, name: str, value: Any) -> List[Key]:
         """The catalog values a query value matches."""

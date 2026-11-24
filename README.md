@@ -3,7 +3,7 @@
 ### Oleksandr
 
 Domain-agnostic retrieval pipeline for marketplace / product search: LLM query decomposition and hard
-filters, then BM25 + dense retrieval fused with reciprocal rank fusion, with reranking to come. Every
+filters, then BM25 + dense retrieval fused with reciprocal rank fusion, and reranking. Every
 component is evaluated through one harness on two benchmarks.
 
 ## Benchmarks
@@ -65,6 +65,28 @@ Filtered runs also log `filtered` (share of queries with a filter applied), `ret
 top-grade answers the filter kept) and `lost_all` (filtered queries left with no answer), and save a
 per-query trace to `results/runs/<dataset>/<run>_<split>.filters.parquet`. Commit
 `results/decompositions/` so every number can be reproduced without an API key.
+
+Prompt versions: `--prompt v1` (default) or `v2`, on both `decompose.py` and `eval.py`; runs with v2 get `+p.v2`.
+v1 is frozen because its text is part of the cache key. Compare prompts without API calls:
+
+```bash
+python scripts/decompose.py stark-amazon --split train --sample 300 --prompt v2     # paid; a fixed random sample
+python scripts/check_filters.py stark-amazon --split train --sample 300 --prompts v1 v2
+```
+
+## Reranking
+
+`scripts/rerank.py` reorders the top results of a saved run and evaluates that as a new run, so it needs no
+indexes in memory. `--blend` fuses the reranked and original orders with RRF.
+
+```bash
+python scripts/rerank.py stark-amazon --run rrf-bge-small-k60-d500+f.brand --reranker minilm --limit 50   # timing only
+python scripts/rerank.py stark-amazon --run rrf-bge-small-k60-d500+f.brand --reranker minilm --depth 10 20 50 100 --blend both
+python scripts/rerank.py stark-amazon --run rrf-bge-small-k60-d500+f.brand --reranker llm --call-llm --limit 5   # paid
+```
+
+Cross-encoders (`minilm`, `bge-base`) score pairs of at most 512 tokens, cached in `data/processed/<dataset>/rerank/`.
+The `llm` reranker ranks a list in one call per query; without `--call-llm` it only reads `results/reranks/`.
 
 ## Caches
 

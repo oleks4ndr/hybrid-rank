@@ -100,3 +100,19 @@ def test_catalog_notes_and_coverage(index):
 def test_rejects_unknown_policy(index):
     with pytest.raises(ValueError):
         index.apply({"brand": ["nike"]}, missing="sometimes")
+
+
+def test_mentions_finds_named_catalog_values():
+    fields = (FilterField("brand", "text", "maker", match="prefix"), FilterField("category", "text", "type"))
+    index = FilterIndex([
+        {"brand": "Nike", "category": ["mountain bikes"]},
+        {"brand": "Nike Golf", "category": ["bikes"]},
+        {"brand": "TrainingMask"}, {"brand": "Hasa"}, {"brand": "The North Face"}, {"brand": "Nike"},
+    ], fields)
+    assert index.mentions("brand", "a NIKE golf shirt") == [("Nike Golf", 1), ("Nike", 2)]  # either may be meant
+    assert index.mentions("brand", "the north face golf nike") == [("The North Face", 1), ("Nike", 2)]
+    assert index.mentions("brand", "shoes by Nike") == [("Nike", 2)]
+    assert index.mentions("brand", "training mask") == [("TrainingMask", 1)]
+    assert index.mentions("brand", "it has a strap") == []  # short words aren't joined into "Hasa"
+    assert index.mentions("brand", "a golf shirt") == []
+    assert index.mentions("category", "bike for the mountain") == [("mountain bikes", 1), ("bikes", 1)]

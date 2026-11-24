@@ -13,27 +13,23 @@
 
 import argparse
 import json
-import subprocess
-from datetime import datetime, timezone
-from pathlib import Path
 from typing import Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
 
 from hybrid_rank.eval.config import EVAL_CONFIGS, EvalConfig
-from hybrid_rank.eval.run_eval import EvalResult, evaluate, load_processed
+from hybrid_rank.eval.run_eval import evaluate, load_processed
+from hybrid_rank.eval.runs import SUMMARY_PATH, log_summary, save_run
 from hybrid_rank.filtering.hard_filter import FilterIndex
 from hybrid_rank.ingest.registry import ADAPTERS
 from hybrid_rank.pipeline import Pipeline
 from hybrid_rank.query.decompose import DEFAULT_EFFORT, DEFAULT_MODEL, Decomposer
+from hybrid_rank.query.prompts import DEFAULT_PROMPT, GROUNDED, PROMPTS
 from hybrid_rank.retrieval.bm25 import IDF_VARIANTS, BM25Index, bm25_dir
 from hybrid_rank.retrieval.embed import ENCODERS, DenseIndex, embeddings_dir
 from hybrid_rank.retrieval.rrf import DEFAULT_DEPTH, DEFAULT_K, RRFRetriever
 from hybrid_rank.schema import Listing, Query
-
-RESULTS_DIR = Path("results")
-SUMMARY_PATH = RESULTS_DIR / "summary.jsonl"
 
 
 def build_bm25(args, listings):
@@ -56,9 +52,11 @@ def build_retriever(args, listings):
     return f"rrf-{args.model}-k{args.rrf_k}-d{args.depth}{variant}", retriever
 
 
-def build_pipeline(args, listings: List[Listing], queries: List[Query], system: str, retriever) -> Tuple[str, Pipeline]:
+def build_pipeline(args, listings: List[Listing], queries: List[Query], system: str,
+                   retriever) -> Tuple[str, Pipeline, str]:
     """Wraps the retriever in decompose -> hard filter. The run name records every switch:
-    +rw = rewritten query, +f.<fields> = hard filters (.strict = listings missing the field dropped)."""
+    +rw = rewritten query, +f.<fields> = hard filters (.strict = listings missing the field dropped),
+    +p.<version> = a non-default decomposition prompt. Also returns the decomposition file, for the log."""
     fields = ADAPTERS[args.dataset].filter_fields
     declared = [f.name for f in fields]
     wanted = declared if args.filters == ["all"] else (args.filters or [])
@@ -69,13 +67,15 @@ def build_pipeline(args, listings: List[Listing], queries: List[Query], system: 
 
     print("Indexing filter fields ...")
     index = FilterIndex([l.filters for l in listings], fields)
-    decomposer = Decomposer.for_dataset(args.dataset, index, model=args.llm_model, effort=args.llm_effort)
+    decomposer = Decomposer.for_dataset(args.dataset, index, model=args.llm_model, effort=args.llm_effort,
+                                        prompt=args.prompt)
     missing = decomposer.missing(q.text for q in queries)
     if missing:
         raise SystemExit(
             f"{len(missing)} of {len(queries)} queries have no decomposition in {decomposer.cache_path}\n"
             f"  run: python scripts/decompose.py {args.dataset} --split {args.split} --model {args.llm_model}"
             + (f" --effort {args.llm_effort}" if args.llm_effort != DEFAULT_EFFORT else "")
+            + (f" --prompt {args.prompt}" if args.prompt != DEFAULT_PROMPT else "")
         )
 
     suffix = "+rw" if args.rewrite else ""
@@ -83,9 +83,11 @@ def build_pipeline(args, listings: List[Listing], queries: List[Query], system: 
         suffix += "+f." + ".".join(names) + (".strict" if args.strict else "")
     if args.llm_model != DEFAULT_MODEL or args.llm_effort != DEFAULT_EFFORT:
         suffix += f"+{args.llm_model}" + (f"-{args.llm_effort}" if args.llm_effort != DEFAULT_EFFORT else "")
+    if args.prompt != DEFAULT_PROMPT:
+        suffix += f"+p.{args.prompt}"
     pipeline = Pipeline(retriever, decomposer.cache, index, names, rewrite=args.rewrite,
                         missing="drop" if args.strict else "keep")
-    return system + suffix, pipeline
+    return system + suffix, pipeline, decomposer.cache_path.name
 
 
 def filter_trace(pipeline: Pipeline, queries: List[Query], df_judgments: pd.DataFrame, ids: List[str],
@@ -122,41 +124,6 @@ def filter_trace(pipeline: Pipeline, queries: List[Query], df_judgments: pd.Data
     return trace, stats
 
 
-def git_commit() -> str:
-    """Short sha, marked -dirty if tracked files had uncommitted changes when the numbers were produced.
-    The summary log doesn't count: it's tracked, so otherwise every run would dirty the next one."""
-    def git(*cmd: str) -> str:
-        return subprocess.run(["git", *cmd], capture_output=True, text=True).stdout.strip()
-    sha = git("rev-parse", "--short", "HEAD") or "unknown"
-    changes = git("status", "--porcelain", "--untracked-files=no", "--", ".", f":!{SUMMARY_PATH}")
-    return sha + ("-dirty" if changes else "")
-
-
-def save_run(result: EvalResult, dataset: str, system: str, split: str) -> Path:
-    run_dir = RESULTS_DIR / "runs" / dataset
-    run_dir.mkdir(parents=True, exist_ok=True)
-    rankings = pd.DataFrame(
-        [(qid, rank, lid) for qid, ranked in result.rankings.items() for rank, lid in enumerate(ranked, start=1)],
-        columns=["query_id", "rank", "listing_id"],
-    )
-    rankings.to_parquet(run_dir / f"{system}_{split}.rankings.parquet", index=False)
-    result.per_query.to_parquet(run_dir / f"{system}_{split}.per_query.parquet", index=False)
-    return run_dir
-
-
-def log_summary(result: EvalResult, dataset: str, system: str, split: str) -> None:
-    record = {
-        "dataset": dataset,
-        "system": system,
-        "split": split,
-        "date": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "commit": git_commit(),
-        **{k: round(v, 4) for k, v in result.summary.items()},
-    }
-    with open(SUMMARY_PATH, "a") as f:
-        f.write(json.dumps(record) + "\n")
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("dataset", choices=list(EVAL_CONFIGS))
@@ -172,17 +139,21 @@ def main():
     llm.add_argument("--strict", action="store_true", help="drop listings missing a filtered field (default: keep)")
     llm.add_argument("--llm-model", default=DEFAULT_MODEL, help="whose decompositions to use")
     llm.add_argument("--llm-effort", default=DEFAULT_EFFORT, help="the effort they were made with")
+    llm.add_argument("--prompt", choices=list(PROMPTS), default=DEFAULT_PROMPT, help="decomposition prompt version")
     args = parser.parse_args()
     if args.strict and not args.filters:
         parser.error("--strict needs --filters")
+    if args.rewrite and args.prompt in GROUNDED:
+        parser.error(f"prompt {args.prompt} doesn't rewrite queries")
 
     config = EVAL_CONFIGS[args.dataset]
     listings, queries, df_judgments = load_processed(args.dataset, split=args.split)
     print(f"Building {args.retriever} index over {len(listings):,} listings ...")
     system, retriever = build_retriever(args, listings)
-    pipeline = None
+    pipeline, provenance = None, {}
     if args.filters or args.rewrite:
-        system, pipeline = build_pipeline(args, listings, queries, system, retriever)
+        system, pipeline, decompositions = build_pipeline(args, listings, queries, system, retriever)
+        provenance["decompositions"] = decompositions
         retriever = pipeline
 
     result = evaluate(queries, df_judgments, search_fn=retriever.search, config=config)
@@ -197,7 +168,7 @@ def main():
     run_dir = save_run(result, args.dataset, system, args.split)
     if trace is not None:
         trace.to_parquet(run_dir / f"{system}_{args.split}.filters.parquet", index=False)
-    log_summary(result, args.dataset, system, args.split)
+    log_summary(result, args.dataset, system, args.split, **provenance)
     print(f"\nRun saved to {run_dir}/, summary appended to {SUMMARY_PATH}")
 
 
