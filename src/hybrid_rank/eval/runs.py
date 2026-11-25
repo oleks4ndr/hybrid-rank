@@ -22,11 +22,12 @@ def runs_dir(dataset: str) -> Path:
 
 def git_commit() -> str:
     """Short sha, marked -dirty if tracked files had uncommitted changes when the numbers were produced.
-    The summary log doesn't count: it's tracked, so otherwise every run would dirty the next one."""
+    results/ doesn't count: the summary log and LLM caches there are tracked outputs, so otherwise every run
+    would dirty the next one."""
     def git(*cmd: str) -> str:
         return subprocess.run(["git", *cmd], capture_output=True, text=True).stdout.strip()
     sha = git("rev-parse", "--short", "HEAD") or "unknown"
-    changes = git("status", "--porcelain", "--untracked-files=no", "--", ".", f":!{SUMMARY_PATH}")
+    changes = git("status", "--porcelain", "--untracked-files=no", "--", ".", f":!{RESULTS_DIR}")
     return sha + ("-dirty" if changes else "")
 
 

@@ -88,6 +88,11 @@ python scripts/rerank.py stark-amazon --run rrf-bge-small-k60-d500+f.brand --rer
 Cross-encoders (`minilm`, `bge-base`) score pairs of at most 512 tokens, cached in `data/processed/<dataset>/rerank/`.
 The `llm` reranker ranks a list in one call per query; without `--call-llm` it only reads `results/reranks/`.
 
+## Final test runs
+
+`bash scripts/final_test.sh` runs every frozen configuration once on test (paid LLM steps included) and resumes if
+interrupted; `--dry-run` lists the steps. `scripts/final_tables.py` prints the result tables (`--split dev` for dev).
+
 ## Caches
 
 BM25 indexes (`data/processed/<dataset>/bm25/`) and embeddings (`data/processed/<dataset>/embeddings/`)
