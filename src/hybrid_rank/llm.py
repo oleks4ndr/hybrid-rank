@@ -4,6 +4,8 @@
 # the caches.
 
 import json
+import threading
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
@@ -17,6 +19,9 @@ MAX_TOKENS = 4096       # room for thinking plus a short JSON answer
 MAX_RETRIES = 6         # the SDK retries 429 / 5xx / connection errors with backoff
 # list prices, USD per 1M (input, output) tokens -- for the cost estimate only
 PRICES = {"claude-opus-5-5": (4.00, 20.00), "claude-sonnet-5-5": (2.00, 10.00), "claude-haiku-5-5": (0.10, 0.50)}
+
+TOKENS_PER_MINUTE = 400_000  # pace below a 500k input-tokens-per-minute account limit
+CHARS_PER_TOKEN = 2.5         # measured 2.61 on STaRK rerank requests; lower = slower and safer
 
 T = TypeVar("T")
 R = TypeVar("R")
@@ -86,6 +91,25 @@ def append_jsonl(path: Path, records: Iterable[Dict[str, Any]]) -> None:
     finally:
         if f is not None:
             f.close()
+
+
+class Pacer:
+    """Spaces calls out so their estimated input tokens stay under a per-minute rate, across threads."""
+
+    def __init__(self, tokens_per_minute: float = TOKENS_PER_MINUTE,
+                 clock: Callable[[], float] = time.monotonic, sleep: Callable[[float], None] = time.sleep):
+        self.seconds_per_token = 60 / tokens_per_minute
+        self.clock, self.sleep = clock, sleep
+        self.lock = threading.Lock()
+        self.next_start = 0.0
+
+    def wait(self, text: str) -> None:
+        with self.lock:
+            start = max(self.clock(), self.next_start)
+            self.next_start = start + len(text) / CHARS_PER_TOKEN * self.seconds_per_token
+        delay = start - self.clock()
+        if delay > 0:
+            self.sleep(delay)
 
 
 def run_parallel(fn: Callable[[T], R], items: Sequence[T], workers: int, desc: str) -> Iterator[R]:

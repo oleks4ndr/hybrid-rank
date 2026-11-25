@@ -7,6 +7,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
+from hybrid_rank.llm import CHARS_PER_TOKEN, Pacer
 from hybrid_rank.rerank.base import RerankRetriever, SavedRun
 from hybrid_rank.rerank.cross_encoder import CrossEncoderReranker, RerankerSpec
 from hybrid_rank.rerank.llm import LLMReranker, apply_ranking
@@ -125,3 +126,12 @@ def test_llm_refusal_keeps_the_original_order(tmp_path):
     llm = LLMReranker(TEXTS, tmp_path, client=FakeClient({}, stop_reason="refusal"))
     new = llm.rank_many([("q", ["a", "b"])])
     assert new[0].error == "refusal" and llm.rerank("q", ["a", "b"]) == ["a", "b"]
+
+
+def test_pacer_spaces_calls_by_their_estimated_tokens():
+    slept = []
+    pacer = Pacer(tokens_per_minute=600, clock=lambda: 100.0, sleep=slept.append)  # 10 tokens per second
+    text = "x" * int(50 * CHARS_PER_TOKEN)  # 50 tokens = 5 s
+    for _ in range(3):
+        pacer.wait(text)
+    assert slept == [5.0, 10.0]

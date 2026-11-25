@@ -67,6 +67,8 @@ the shopper accepts any of them ("red or blue")."""
 
 # v3 is grounded in the catalog: code looks up which catalog values the request names (FilterIndex.mentions) and
 # the model only judges each one. It returns no rewritten query.
+# On STaRK dev it filtered 396 of 518 same-brand queries (v1: 314), but MRR fell to 0.5533 (v1: 0.5549, within
+# noise) and 8 queries lost every answer (v1: 4), so v1 stays default.
 SYSTEM_TEMPLATE_V3 = """\
 You decide which catalog values in a shopper's search request become hard filters.
 

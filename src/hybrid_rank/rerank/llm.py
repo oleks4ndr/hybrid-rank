@@ -13,6 +13,7 @@ from hybrid_rank.llm import (
     DEFAULT_EFFORT,
     DEFAULT_MODEL,
     MAX_TOKENS,
+    Pacer,
     append_jsonl,
     call_json,
     make_client,
@@ -71,6 +72,7 @@ class LLMReranker:
                  effort: str = DEFAULT_EFFORT, client: Any = None):
         self.texts = texts
         self.model, self.effort, self.client = model, effort, client
+        self.pacer = Pacer()  # a request holds 20 product texts, so a few per second exceed the account's limit
         settings = json.dumps([SYSTEM, SCHEMA, effort, MAX_TOKENS, WORDS], sort_keys=True)
         self.cache_path = cache_dir / f"{model}_{hashlib.sha1(settings.encode()).hexdigest()[:10]}.jsonl"
         self.cache: Dict[str, Ranking] = {}
@@ -96,6 +98,7 @@ class LLMReranker:
 
     def _call(self, item: Tuple[str, str]) -> Ranking:
         query_text, request = item
+        self.pacer.wait(SYSTEM + request)
         reply = call_json(self.client, self.model, self.effort, SYSTEM, request, SCHEMA)
         numbers = reply.data.get("ranking") if reply.data else []
         numbers = [n for n in numbers if isinstance(n, int)] if isinstance(numbers, list) else []
