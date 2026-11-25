@@ -129,8 +129,9 @@ def main():
                 print(f"{label:<20}{name:<9}MISSING")
                 continue
             ranked = {q: r for p in parts for q, r in load_rankings("wands", run, p).items()}
-            print(f"{label:<20}{name:<9}n={len(ranked):<4}" + "  ".join(
-                f"nDCG@{k} {np.mean([ndcg_at_k(r, relevance[q], k) for q, r in ranked.items()]):.4f}" for k in (1, 20, 50, 100)))
+            queries = [q for p in parts for q in load_split("wands")[p]]  # a query with no results scores 0
+            print(f"{label:<20}{name:<9}n={len(queries):<4}" + "  ".join(
+                f"nDCG@{k} {np.mean([ndcg_at_k(ranked.get(q, []), relevance[q], k) for q in queries]):.4f}" for k in (1, 20, 50, 100)))
 
 
 if __name__ == "__main__":

@@ -94,3 +94,387 @@
 {"query": "alyse 8 light", "semantic_query": "alyse 8 light", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
 {"query": "48 inch bathroom vanity with trough sink", "semantic_query": "48 inch bathroom vanity with trough sink", "filters": {}, "error": null, "input_tokens": 1082, "output_tokens": 51}
 {"query": "rack glass", "semantic_query": "rack glass", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "coffee table fire pit", "semantic_query": "coffee table fire pit", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "salon chair", "semantic_query": "salon chair", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "sofa with ottoman", "semantic_query": "sofa with ottoman", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "turquoise pillows", "semantic_query": "turquoise pillows", "filters": {"product_class": ["Accent Pillows"], "color": ["turquoise"]}, "error": null, "input_tokens": 1072, "output_tokens": 55}
+{"query": "driftwood mirror", "semantic_query": "driftwood mirror", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "smart coffee table", "semantic_query": "smart coffee table", "filters": {"product_class": ["Coffee & Cocktail Tables"]}, "error": null, "input_tokens": 1071, "output_tokens": 55}
+{"query": "chair and a half recliner", "semantic_query": "chair and a half recliner", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "home sweet home sign", "semantic_query": "home sweet home sign", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "beds that have leds", "semantic_query": "beds with LED lights", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1071, "output_tokens": 46}
+{"query": "ombre rug", "semantic_query": "ombre rug", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "black 5 drawer dresser by guilford", "semantic_query": "black 5 drawer dresser by Guilford", "filters": {"color": ["black"]}, "error": null, "input_tokens": 1079, "output_tokens": 52}
+{"query": "outdoor privacy wall", "semantic_query": "outdoor privacy wall", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "closet storage with zipper", "semantic_query": "closet storage with zipper", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "chrome bathroom 4 light vanity light", "semantic_query": "chrome bathroom 4 light vanity light", "filters": {}, "error": null, "input_tokens": 1080, "output_tokens": 50}
+{"query": "gurney  slade 56", "semantic_query": "gurney slade 56", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 42}
+{"query": "rooster decor", "semantic_query": "rooster decor", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "bathroom vanity knobs", "semantic_query": "bathroom vanity knobs", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "living curtains pearl", "semantic_query": "living room curtains pearl", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 43}
+{"query": "leather chairs", "semantic_query": "leather chairs", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "burnt orange curtains", "semantic_query": "burnt orange curtains", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "3 1/2 inch drawer pull", "semantic_query": "3 1/2 inch drawer pull", "filters": {}, "error": null, "input_tokens": 1079, "output_tokens": 48}
+{"query": "dark gray dresser", "semantic_query": "dark gray dresser", "filters": {"color": ["gray"]}, "error": null, "input_tokens": 1072, "output_tokens": 46}
+{"query": "non slip shower floor tile", "semantic_query": "non slip shower floor tile", "filters": {"product_class": ["Floor & Wall Tile"]}, "error": null, "input_tokens": 1074, "output_tokens": 56}
+{"query": "enclosed shoe rack", "semantic_query": "enclosed shoe rack", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "elegant executive chair", "semantic_query": "elegant executive chair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "bar stool 24 inches height", "semantic_query": "bar stool 24 inch height", "filters": {"product_class": ["Bar Stools"]}, "error": null, "input_tokens": 1075, "output_tokens": 53}
+{"query": "calvin patio chair", "semantic_query": "calvin patio chair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "closet pull out valet rod", "semantic_query": "closet pull out valet rod", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "foutains with brick look", "semantic_query": "fountain with brick look", "filters": {"product_class": ["fountain"]}, "error": null, "input_tokens": 1072, "output_tokens": 309}
+{"query": "toddler couch fold out", "semantic_query": "toddler couch fold out", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "chrome shower head and valve", "semantic_query": "chrome shower head and valve", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "moen matte black hooks", "semantic_query": "moen matte black hooks", "filters": {"color": ["black"]}, "error": null, "input_tokens": 1073, "output_tokens": 46}
+{"query": "solid teak end table", "semantic_query": "solid teak end table", "filters": {"product_class": ["End Tables"]}, "error": null, "input_tokens": 1071, "output_tokens": 47}
+{"query": "arwen table lamp", "semantic_query": "arwen table lamp", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "70s inspired furniture", "semantic_query": "70s inspired furniture", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 43}
+{"query": "tufted chair with gold legs", "semantic_query": "tufted chair with gold legs", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "kohen 5 drawer dresser", "semantic_query": "kohen 5 drawer dresser", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 47}
+{"query": "carolyn console table", "semantic_query": "Carolyn console table", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 42}
+{"query": "wayfair sleep zippered", "semantic_query": "wayfair sleep zippered", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "tollette teal outdoor rug", "semantic_query": "tollette teal outdoor rug", "filters": {"product_class": ["Area Rugs"], "color": ["teal"]}, "error": null, "input_tokens": 1076, "output_tokens": 58}
+{"query": "royal blue counter height chairs", "semantic_query": "royal blue counter height chairs", "filters": {"color": ["blue"]}, "error": null, "input_tokens": 1075, "output_tokens": 49}
+{"query": "capricorn chest", "semantic_query": "capricorn chest", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "broadway lever", "semantic_query": "broadway lever", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "overstreet rustic pub stools", "semantic_query": "overstreet rustic pub stools", "filters": {"product_class": ["Bar Stools"], "style": ["rustic"]}, "error": null, "input_tokens": 1076, "output_tokens": 60}
+{"query": "jordanna solid wood rocking", "semantic_query": "Jordanna solid wood rocking chair", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 49}
+{"query": "7qt slow cooker", "semantic_query": "7qt slow cooker", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 43}
+{"query": "monthly calendar", "semantic_query": "monthly calendar", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "novara pergola", "semantic_query": "novara pergola", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "zachary 72.5", "semantic_query": "zachary 72.5", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "osgood mirror", "semantic_query": "osgood mirror", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "nautical platters", "semantic_query": "nautical platters", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "infant girl crib bedding", "semantic_query": "infant girl crib bedding", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "fold in half table", "semantic_query": "fold in half table", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "annex dresser", "semantic_query": "annex dresser", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "wall sconce with usb port", "semantic_query": "wall sconce with USB port", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "46 inch closet door", "semantic_query": "46 inch closet door", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 42}
+{"query": "sheffield home bath set", "semantic_query": "sheffield home bath set", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "certified international melamine", "semantic_query": "certified international melamine", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "dorel vanity", "semantic_query": "dorel vanity", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "orren ellis l shape desk", "semantic_query": "Orren Ellis L shape desk", "filters": {"product_class": ["Desks"]}, "error": null, "input_tokens": 1075, "output_tokens": 52}
+{"query": "sancroft armchair", "semantic_query": "sancroft armchair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "aloe vera plant pot", "semantic_query": "aloe vera plant pot", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "wall art fiji", "semantic_query": "wall art fiji", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "palram harmony greenhouses", "semantic_query": "palram harmony greenhouses", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "full metal bed rose gold", "semantic_query": "full metal bed rose gold", "filters": {"product_class": ["Beds"], "color": ["gold"]}, "error": null, "input_tokens": 1074, "output_tokens": 53}
+{"query": "3/4 size mattress", "semantic_query": "3/4 size mattress", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 43}
+{"query": "vlad modular sectional", "semantic_query": "vlad modular sectional", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "rose gold lounge", "semantic_query": "rose gold lounge", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "whimsical solar lights", "semantic_query": "whimsical solar lights", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "industrial pipe dining  table", "semantic_query": "industrial pipe dining table", "filters": {"product_class": ["Dining Tables"], "style": ["industrial"]}, "error": null, "input_tokens": 1075, "output_tokens": 58}
+{"query": "antique silver entry table", "semantic_query": "antique silver entry table", "filters": {"color": ["silver"]}, "error": null, "input_tokens": 1072, "output_tokens": 46}
+{"query": "filaret outdoor sofa", "semantic_query": "filaret outdoor sofa", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "entertainment stand end table", "semantic_query": "entertainment stand end table", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "kohler whitehaven farmhouse kitchen sink", "semantic_query": "kohler whitehaven farmhouse kitchen sink", "filters": {}, "error": null, "input_tokens": 1084, "output_tokens": 54}
+{"query": "bar room wall decor", "semantic_query": "bar room wall decor", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "regner power loom red", "semantic_query": "regner power loom red", "filters": {"color": ["red"]}, "error": null, "input_tokens": 1071, "output_tokens": 44}
+{"query": "gracie oaks 62 oller 14 ceiling fan", "semantic_query": "gracie oaks 62 oller 14 ceiling fan", "filters": {}, "error": null, "input_tokens": 1085, "output_tokens": 55}
+{"query": "tufted upholstered bed diamond", "semantic_query": "tufted upholstered bed diamond", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1077, "output_tokens": 52}
+{"query": "arched christmas tree", "semantic_query": "arched christmas tree", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "48 in entry table with side by side drawer", "semantic_query": "48 inch entry table with side by side drawer", "filters": {"product_class": ["End Tables"]}, "error": null, "input_tokens": 1079, "output_tokens": 55}
+{"query": "flamingo", "semantic_query": "flamingo", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "kitchen anti fatigue mats", "semantic_query": "kitchen anti fatigue mats", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 47}
+{"query": "flour and sugar containers", "semantic_query": "flour and sugar containers", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "outdoor movie screen", "semantic_query": "outdoor movie screen", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "front porch furniture sets", "semantic_query": "front porch furniture sets", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "ayesha curry kitchen", "semantic_query": "ayesha curry kitchen", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "hillsby oriental rug", "semantic_query": "hillsby oriental rug", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "pineapple", "semantic_query": "pineapple", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "mila task chair", "semantic_query": "mila task chair", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "bed risers", "semantic_query": "bed risers", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "led light strip", "semantic_query": "led light strip", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "geralyn upholstered storage platform bed", "semantic_query": "geralyn upholstered storage platform bed", "filters": {}, "error": null, "input_tokens": 1079, "output_tokens": 49}
+{"query": "peacock", "semantic_query": "peacock", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "welcome sign", "semantic_query": "welcome sign", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "zodiac pillow", "semantic_query": "zodiac pillow", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "brockham solid blackout thermal grommet curtain panels", "semantic_query": "brockham solid blackout thermal grommet curtain panels", "filters": {}, "error": null, "input_tokens": 1084, "output_tokens": 54}
+{"query": "tall storage cabinet", "semantic_query": "tall storage cabinet", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "unique coffee tables", "semantic_query": "unique coffee tables", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "upholstered bed", "semantic_query": "upholstered bed", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1071, "output_tokens": 46}
+{"query": "wine bar", "semantic_query": "wine bar", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "boho bed frame", "semantic_query": "boho bed frame", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1071, "output_tokens": 46}
+{"query": "leather dining chairs", "semantic_query": "leather dining chairs", "filters": {"product_class": ["Dining Chairs"]}, "error": null, "input_tokens": 1072, "output_tokens": 50}
+{"query": "block coffee table", "semantic_query": "block coffee table", "filters": {"product_class": ["Coffee & Cocktail Tables"]}, "error": null, "input_tokens": 1070, "output_tokens": 55}
+{"query": "wainscoting ideas", "semantic_query": "wainscoting ideas", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "kids chair", "semantic_query": "kids chair", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "entertainment console", "semantic_query": "entertainment console", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "outdoor light fixtures", "semantic_query": "outdoor light fixtures", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "black fluffy stool", "semantic_query": "black fluffy stool", "filters": {"product_class": ["Bar Stools"], "color": ["black"]}, "error": null, "input_tokens": 1072, "output_tokens": 51}
+{"query": "black hanging bookshelf", "semantic_query": "black hanging bookshelf", "filters": {"color": ["black"]}, "error": null, "input_tokens": 1074, "output_tokens": 47}
+{"query": "auburn throw pillows", "semantic_query": "auburn throw pillows", "filters": {"product_class": ["Accent Pillows"]}, "error": null, "input_tokens": 1073, "output_tokens": 52}
+{"query": "orren ellis l shaped desk", "semantic_query": "orren ellis L-shaped desk", "filters": {"product_class": ["Desks"]}, "error": null, "input_tokens": 1076, "output_tokens": 52}
+{"query": "low profile loveseat recliner", "semantic_query": "low profile loveseat recliner", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "wire basket with dividers", "semantic_query": "wire basket with dividers", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "podium with locking cabinet", "semantic_query": "podium with locking cabinet", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "rug plum", "semantic_query": "plum rug", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "queen wingback chair", "semantic_query": "queen wingback chair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "kitchen wooden stand", "semantic_query": "kitchen wooden stand", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "liberty hardware francisco", "semantic_query": "liberty hardware francisco", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "drum picture", "semantic_query": "drum picture", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "industrial", "semantic_query": "industrial", "filters": {"style": ["industrial"]}, "error": null, "input_tokens": 1068, "output_tokens": 42}
+{"query": "wishbone chair", "semantic_query": "wishbone chair", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "leather chair", "semantic_query": "leather chair", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "bohemian", "semantic_query": "bohemian", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "papasan chair frame only", "semantic_query": "papasan chair frame only", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "led nightstand", "semantic_query": "LED nightstand", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 41}
+{"query": "meditation", "semantic_query": "meditation", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "turquoise chair", "semantic_query": "turquoise chair", "filters": {"color": ["turquoise"]}, "error": null, "input_tokens": 1071, "output_tokens": 46}
+{"query": "modern outdoor furniture", "semantic_query": "modern outdoor furniture", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "kitchen storage shelves", "semantic_query": "kitchen storage shelves", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "feather wall art", "semantic_query": "feather wall art", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "camper", "semantic_query": "camper", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "dual monitor stand", "semantic_query": "dual monitor stand", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "coffee bar buffet", "semantic_query": "coffee bar buffet", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "printers", "semantic_query": "printers", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "zen", "semantic_query": "zen", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "nectar queen mattress", "semantic_query": "Nectar queen mattress", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 44}
+{"query": "star wars rug", "semantic_query": "star wars rug", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "picasso", "semantic_query": "picasso", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "mexican art", "semantic_query": "mexican art", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "bedroom accessories", "semantic_query": "bedroom accessories", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "rustic storage cabinet", "semantic_query": "rustic storage cabinet", "filters": {"style": ["rustic"]}, "error": null, "input_tokens": 1074, "output_tokens": 48}
+{"query": "outdoor lounge cushions", "semantic_query": "outdoor lounge cushions", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "almost heaven sauna", "semantic_query": "almost heaven sauna", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "e12/candelabra", "semantic_query": "e12 candelabra", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "penny round tile", "semantic_query": "penny round tile", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "sugar canister", "semantic_query": "sugar canister", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "farmhouse bread box", "semantic_query": "farmhouse bread box", "filters": {"style": ["farmhouse / country"]}, "error": null, "input_tokens": 1073, "output_tokens": 51}
+{"query": "promo codes or discounts", "semantic_query": "promo codes or discounts", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "bedroom wall decor floral, multicolored with some teal (prints)", "semantic_query": "bedroom wall decor floral print", "filters": {}, "error": null, "input_tokens": 1088, "output_tokens": 46}
+{"query": "board game storage cabinet", "semantic_query": "board game storage cabinet", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "biycicle plant stands", "semantic_query": "bicycle plant stand", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "belchertown table lamp", "semantic_query": "belchertown table lamp", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "black frame 22 x 36", "semantic_query": "black frame 22 x 36", "filters": {"color": ["black"]}, "error": null, "input_tokens": 1074, "output_tokens": 47}
+{"query": "black freestanding tub  with faucet", "semantic_query": "black freestanding bathtub with faucet", "filters": {"color": ["black"]}, "error": null, "input_tokens": 1077, "output_tokens": 51}
+{"query": "lunch bag", "semantic_query": "lunch bag", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "desk for kids tjat ate 10 year old", "semantic_query": "desk for kids ages 10 years old", "filters": {}, "error": null, "input_tokens": 1080, "output_tokens": 47}
+{"query": "ceramic tile sea shell", "semantic_query": "ceramic tile sea shell", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "ge top loading washer 4.5", "semantic_query": "GE top loading washer 4.5 cu ft", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 51}
+{"query": "cake plates with tops", "semantic_query": "cake plate with dome cover top", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 45}
+{"query": "grill cover 73", "semantic_query": "grill cover 73", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "fleur de lis living candle wall sconce bronze", "semantic_query": "fleur de lis living candle wall sconce bronze", "filters": {}, "error": null, "input_tokens": 1082, "output_tokens": 52}
+{"query": "fawkes 36\" blue vanity", "semantic_query": "Fawkes 36\" blue vanity", "filters": {"color": ["blue"]}, "error": null, "input_tokens": 1077, "output_tokens": 53}
+{"query": "full mattress padded liner", "semantic_query": "full mattress padded liner", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "love seat wide faux leather tuxedo arm sofa", "semantic_query": "wide faux leather tuxedo arm love seat sofa", "filters": {}, "error": null, "input_tokens": 1084, "output_tokens": 54}
+{"query": "door pulls bronze matte 4 inch", "semantic_query": "bronze matte door pulls 4 inch", "filters": {"color": ["bronze"]}, "error": null, "input_tokens": 1079, "output_tokens": 54}
+{"query": "nettie 5 pc bar set", "semantic_query": "nettie 5 pc bar set", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 46}
+{"query": "memory foam rug galveston", "semantic_query": "memory foam rug galveston", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "music plug wall plate", "semantic_query": "music plug wall plate", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "light wood nightstand with silver accents", "semantic_query": "light wood nightstand with silver accents", "filters": {"product_class": ["Nightstands"]}, "error": null, "input_tokens": 1077, "output_tokens": 54}
+{"query": "delta trinsic double towel hook in champagne bronze", "semantic_query": "Delta Trinsic double towel hook in champagne bronze", "filters": {"product_class": ["towel hook"]}, "error": null, "input_tokens": 1083, "output_tokens": 420}
+{"query": "trinaic towel rod", "semantic_query": "trinaic towel rod", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "wisdom stone river 3-3/4", "semantic_query": "wisdom stone river 3-3/4", "filters": {}, "error": null, "input_tokens": 1078, "output_tokens": 48}
+{"query": "bee", "semantic_query": "bee", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "white splashproof shiplap wallpaper", "semantic_query": "white splashproof shiplap wallpaper", "filters": {"color": ["white"]}, "error": null, "input_tokens": 1079, "output_tokens": 52}
+{"query": "power lift chair", "semantic_query": "power lift chair", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "small space dining table and chairs sets", "semantic_query": "small space dining table and chairs set", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 45}
+{"query": "owl", "semantic_query": "owl", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "sheets for twinxl", "semantic_query": "sheets for twin XL bed", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 45}
+{"query": "waterfall faucet", "semantic_query": "waterfall faucet", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "anti fatigue mat", "semantic_query": "anti fatigue mat", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "gold", "semantic_query": "gold", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "3 piece rug set with runners", "semantic_query": "3 piece rug set with runners", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 45}
+{"query": "artificial orchid arrangement", "semantic_query": "artificial orchid arrangement", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "bathroom wastebasket", "semantic_query": "bathroom wastebasket", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "outdoor seat/back cushion", "semantic_query": "outdoor seat/back cushion", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 46}
+{"query": "cloud modular sectional", "semantic_query": "cloud modular sectional", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "storage dresser", "semantic_query": "storage dresser", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "bathroom single faucet", "semantic_query": "bathroom single faucet", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "decorative wall clocks", "semantic_query": "decorative wall clocks", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "accent leather chair", "semantic_query": "accent leather chair", "filters": {"product_class": ["Accent Chairs"]}, "error": null, "input_tokens": 1071, "output_tokens": 50}
+{"query": "pull out sleeper loveseat", "semantic_query": "sleeper loveseat", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 43}
+{"query": "eiffel tower wall art", "semantic_query": "eiffel tower wall art", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "anchor decor", "semantic_query": "anchor decor", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "surge protector", "semantic_query": "surge protector", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "beaded curtains", "semantic_query": "beaded curtains", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "coffee container", "semantic_query": "coffee container", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "comfortable accent chair", "semantic_query": "comfortable accent chair", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "antique brass faucet", "semantic_query": "antique brass faucet", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "desk and chair set", "semantic_query": "desk and chair set", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "high weight capacity bunk beds", "semantic_query": "high weight capacity bunk beds", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1076, "output_tokens": 51}
+{"query": "bistro table and chairs", "semantic_query": "bistro table and chairs", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "living room coffee table sets", "semantic_query": "living room coffee table sets", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "retractable side awning", "semantic_query": "retractable side awning", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "cortez pillow", "semantic_query": "cortez pillow", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "semi flush foyer light", "semantic_query": "semi flush foyer light", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "candace wingback upholstered bed", "semantic_query": "candace wingback upholstered bed", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1076, "output_tokens": 51}
+{"query": "small curtain rods", "semantic_query": "small curtain rods", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "champagne velvet desk chair", "semantic_query": "champagne velvet desk chair", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "bathroom freestanding cabinet", "semantic_query": "bathroom freestanding cabinet", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 47}
+{"query": "dolomite subway tile", "semantic_query": "dolomite subway tile", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "oliver parsons", "semantic_query": "oliver parsons", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "stainless steel free standing shower caddy", "semantic_query": "stainless steel free standing shower caddy", "filters": {}, "error": null, "input_tokens": 1078, "output_tokens": 48}
+{"query": "donaldson teak couch", "semantic_query": "donaldson teak couch", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "barstool patio sets", "semantic_query": "patio bar stool sets", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 43}
+{"query": "gowdy height adjustable standing desk", "semantic_query": "gowdy height adjustable standing desk", "filters": {"product_class": ["Desks"]}, "error": null, "input_tokens": 1078, "output_tokens": 52}
+{"query": "parakeet toy", "semantic_query": "parakeet toy", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "marlon tufted queen bed", "semantic_query": "marlon tufted queen bed", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "grantola wall mirror", "semantic_query": "grantola wall mirror", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "johan desk by laurel foundry", "semantic_query": "Johan desk by Laurel Foundry", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 49}
+{"query": "brunk ship wheel", "semantic_query": "brunk ship wheel", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "family lamp", "semantic_query": "family lamp", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "hitchcock mid-century wall shelf", "semantic_query": "hitchcock mid-century wall shelf", "filters": {"style": ["mid-century modern"]}, "error": null, "input_tokens": 1079, "output_tokens": 58}
+{"query": "48\" sliding single track , barn door for laundry", "semantic_query": "48 inch sliding single track barn door for laundry", "filters": {}, "error": null, "input_tokens": 1081, "output_tokens": 51}
+{"query": "round outdoor patio cover", "semantic_query": "round outdoor patio cover", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "coma inducer comforter king set", "semantic_query": "coma inducer comforter king set", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "decorative white pillow", "semantic_query": "decorative white pillow", "filters": {"product_class": ["Accent Pillows"], "color": ["white"]}, "error": null, "input_tokens": 1072, "output_tokens": 52}
+{"query": "wood floor protector mat", "semantic_query": "wood floor protector mat", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "mission double vanity", "semantic_query": "mission double vanity", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "zakariyah twin platform", "semantic_query": "zakariyah twin platform bed", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 46}
+{"query": "small woven pouf", "semantic_query": "small woven pouf", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "end table between recliners", "semantic_query": "end table between recliners", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "chaves l-shape floating desk with hutch", "semantic_query": "chaves L-shape floating desk with hutch", "filters": {}, "error": null, "input_tokens": 1080, "output_tokens": 50}
+{"query": "animal print handmade tufted wool beige/black area rug by allmodern", "semantic_query": "animal print handmade tufted wool area rug", "filters": {"product_class": ["Area Rugs"], "color": ["beige", "black"]}, "error": null, "input_tokens": 1088, "output_tokens": 64}
+{"query": "mattress foam topper queen", "semantic_query": "mattress foam topper queen", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "circle cabinet pulls", "semantic_query": "circle cabinet pulls", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "hawaii vintage art", "semantic_query": "vintage Hawaii art", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 44}
+{"query": "mobley zero gravity adjustable bed with wireless remote", "semantic_query": "mobley zero gravity adjustable bed with wireless remote", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1085, "output_tokens": 59}
+{"query": "real touch roses floral arrangements in glass vase", "semantic_query": "real touch roses floral arrangement in glass vase", "filters": {}, "error": null, "input_tokens": 1081, "output_tokens": 51}
+{"query": "merlyn 6", "semantic_query": "merlyn 6", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "malachi sled", "semantic_query": "malachi sled", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "odum velvet", "semantic_query": "odum velvet", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "moen 5995 arbor one", "semantic_query": "moen 5995 arbor one", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "led 60", "semantic_query": "led 60", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "body pillow and case", "semantic_query": "body pillow and pillowcase", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 45}
+{"query": "coat rack for bedroom", "semantic_query": "coat rack for bedroom", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "medium clips", "semantic_query": "medium clips", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "sunjoy lantern", "semantic_query": "sunjoy lantern", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "hulmeville writing desk with hutch", "semantic_query": "hulmeville writing desk with hutch", "filters": {}, "error": null, "input_tokens": 1078, "output_tokens": 48}
+{"query": "landis wall mounted bathroom shelves", "semantic_query": "landis wall mounted bathroom shelves", "filters": {}, "error": null, "input_tokens": 1079, "output_tokens": 49}
+{"query": "blaylock bookcase headboard", "semantic_query": "blaylock bookcase headboard", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 46}
+{"query": "cream queen duvet cover", "semantic_query": "cream queen duvet cover", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "hub leaning full length mirror", "semantic_query": "leaning full length mirror with hub", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 46}
+{"query": "outdoor waterproof chest", "semantic_query": "outdoor waterproof chest", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "chase utility laundry cart", "semantic_query": "chase utility laundry cart", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "bowersville ladder writing desk", "semantic_query": "bowersville ladder writing desk", "filters": {"product_class": ["Desks"]}, "error": null, "input_tokens": 1076, "output_tokens": 51}
+{"query": "hussain handmade tufted magenta rug", "semantic_query": "hussain handmade tufted magenta rug", "filters": {"product_class": ["Area Rugs"], "color": ["pink"]}, "error": null, "input_tokens": 1079, "output_tokens": 61}
+{"query": "kohler purist brushed bronze", "semantic_query": "kohler purist brushed bronze", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 46}
+{"query": "golub dining table", "semantic_query": "golub dining table", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "upholstered girls bed", "semantic_query": "upholstered girls bed", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1073, "output_tokens": 48}
+{"query": "canadian", "semantic_query": "canadian", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "wayfair tension rod", "semantic_query": "wayfair tension rod", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "mystic swivel", "semantic_query": "mystic swivel", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "mahone porch rocking chair", "semantic_query": "mahone porch rocking chair", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "iittala bowl", "semantic_query": "iittala bowl", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "itchington butterfly", "semantic_query": "itchington butterfly", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "canvas map art", "semantic_query": "canvas map art", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "brendon counter stool", "semantic_query": "brendon counter stool", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "ottoman bed queen", "semantic_query": "ottoman bed queen", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "ruckus chair", "semantic_query": "ruckus chair", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "mud room sign", "semantic_query": "mud room sign", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "one alium way", "semantic_query": "one alium way", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 148}
+{"query": "olive green console table", "semantic_query": "olive green console table", "filters": {"product_class": ["console table"], "color": ["green"]}, "error": null, "input_tokens": 1070, "output_tokens": 47}
+{"query": "white bathroom vanity black hardware", "semantic_query": "white bathroom vanity with black hardware", "filters": {"color": ["white"]}, "error": null, "input_tokens": 1077, "output_tokens": 51}
+{"query": "tressler rug", "semantic_query": "tressler rug", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "amarillo", "semantic_query": "amarillo", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "pennfield playhouse", "semantic_query": "pennfield playhouse", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "platform bed side table", "semantic_query": "platform bed side table", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "navy and peach bedding", "semantic_query": "navy and peach bedding", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 351}
+{"query": "sliding closet mirror", "semantic_query": "sliding closet mirror", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "huntsville sectional sofa", "semantic_query": "huntsville sectional sofa", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "kisner", "semantic_query": "kisner", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "gas detector", "semantic_query": "gas detector", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "wooden chair outdoor", "semantic_query": "wooden outdoor chair", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "pasta tools", "semantic_query": "pasta tools", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "drudge report", "semantic_query": "drudge report", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "brushed gold wall decor", "semantic_query": "brushed gold wall decor", "filters": {"color": ["gold"]}, "error": null, "input_tokens": 1074, "output_tokens": 47}
+{"query": "rug for teen room", "semantic_query": "rug for teen room", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "verden callan", "semantic_query": "verden callan", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "milk cow chair", "semantic_query": "milk cow chair", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "wrought tv stand", "semantic_query": "wrought iron TV stand", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 44}
+{"query": "island estate coffee table", "semantic_query": "island estate coffee table", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "pastel pink desk chair", "semantic_query": "pastel pink desk chair", "filters": {"product_class": ["Desk Chairs"], "color": ["pink"]}, "error": null, "input_tokens": 1074, "output_tokens": 57}
+{"query": "sinks bed frame", "semantic_query": "bed frame", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 39}
+{"query": "urban outfitters duvet", "semantic_query": "Urban Outfitters duvet", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 46}
+{"query": "gravity feeder", "semantic_query": "gravity feeder", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "counter top one cup hot water dispenser", "semantic_query": "counter top one cup hot water dispenser", "filters": {}, "error": null, "input_tokens": 1078, "output_tokens": 48}
+{"query": "dining table vinyl cloth", "semantic_query": "dining table vinyl cloth", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "alter furniture", "semantic_query": "alter furniture", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "mom urn", "semantic_query": "mom urn", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "minnestrista", "semantic_query": "minnestrista", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "farmhouse hood vent", "semantic_query": "farmhouse range hood vent", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 45}
+{"query": "writing desk 48\"", "semantic_query": "writing desk 48 inch", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 44}
+{"query": "china clock", "semantic_query": "china clock", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "brush nickel faucet bathroom", "semantic_query": "brushed nickel bathroom faucet", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 48}
+{"query": "self enclosed planters", "semantic_query": "self enclosed planters", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "propane gas dryer", "semantic_query": "propane gas dryer", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "12v dirt bike", "semantic_query": "12v dirt bike", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 42}
+{"query": "super bright lights", "semantic_query": "super bright lights", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "gray leather cocktail table", "semantic_query": "gray leather cocktail table", "filters": {"product_class": ["Coffee & Cocktail Tables"], "color": ["gray"]}, "error": null, "input_tokens": 1074, "output_tokens": 63}
+{"query": "refrigerator with ice an water in door", "semantic_query": "refrigerator with ice and water dispenser in door", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 51}
+{"query": "small ladies rocker swivel recliner", "semantic_query": "small ladies rocker swivel recliner", "filters": {}, "error": null, "input_tokens": 1078, "output_tokens": 48}
+{"query": "queen ann style living room chair", "semantic_query": "queen anne style living room chair", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "huge bookcase", "semantic_query": "huge bookcase", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "girl reading statue", "semantic_query": "girl reading statue", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "wood rack wide", "semantic_query": "wood rack wide", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "teal chair", "semantic_query": "teal chair", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "pool floats", "semantic_query": "pool floats", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "outdoor clock", "semantic_query": "outdoor clock", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "burruss patio sectional with cushions", "semantic_query": "burruss patio sectional with cushions", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 47}
+{"query": "shower hooks", "semantic_query": "shower hooks", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "toilet paper stand", "semantic_query": "toilet paper stand", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "wayfair coffee table", "semantic_query": "coffee table", "filters": {"product_class": ["Coffee & Cocktail Tables"]}, "error": null, "input_tokens": 1073, "output_tokens": 53}
+{"query": "twin bed frame", "semantic_query": "twin bed frame", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1071, "output_tokens": 46}
+{"query": "writing desk", "semantic_query": "writing desk", "filters": {"product_class": ["Desks"]}, "error": null, "input_tokens": 1069, "output_tokens": 44}
+{"query": "jennie tufted upholstered low profile platform bed", "semantic_query": "jennie tufted upholstered low profile platform bed", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1082, "output_tokens": 57}
+{"query": "living room ideas", "semantic_query": "living room ideas", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "tile backsplash", "semantic_query": "tile backsplash", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "wayfair comforters", "semantic_query": "comforters", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 38}
+{"query": "wall shelves", "semantic_query": "wall shelves", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "ergonomic chair", "semantic_query": "ergonomic chair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "kitchen storage cabinet", "semantic_query": "kitchen storage cabinet", "filters": {}, "error": null, "input_tokens": 1075, "output_tokens": 45}
+{"query": "lowes tile", "semantic_query": "lowes tile", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "side table with storage", "semantic_query": "side table with storage", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "gray dresser", "semantic_query": "gray dresser", "filters": {"color": ["gray"]}, "error": null, "input_tokens": 1070, "output_tokens": 44}
+{"query": "30 inch bathroom vanity", "semantic_query": "30 inch bathroom vanity", "filters": {}, "error": null, "input_tokens": 1077, "output_tokens": 46}
+{"query": "butcher block island", "semantic_query": "butcher block island", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "shoe bench entryway", "semantic_query": "shoe bench entryway", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "trundle daybed", "semantic_query": "trundle daybed", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "bathroom lighting", "semantic_query": "bathroom lighting", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "shoe closet", "semantic_query": "shoe closet", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "kitchen islands with seating", "semantic_query": "kitchen islands with seating", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "full bed with trundle", "semantic_query": "full bed with trundle", "filters": {"product_class": ["Beds"]}, "error": null, "input_tokens": 1072, "output_tokens": 47}
+{"query": "parsons chairs", "semantic_query": "parsons chairs", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "desk for kids", "semantic_query": "desk for kids", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "wood bar stools", "semantic_query": "wood bar stools", "filters": {"product_class": ["Bar Stools"]}, "error": null, "input_tokens": 1071, "output_tokens": 49}
+{"query": "above toilet cabinet", "semantic_query": "above toilet cabinet", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "patio design", "semantic_query": "patio design", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "indoor water fountain", "semantic_query": "indoor water fountain", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "card table", "semantic_query": "card table", "filters": {}, "error": null, "input_tokens": 1067, "output_tokens": 37}
+{"query": "bed side table", "semantic_query": "bed side table", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "tall buffet cabinet", "semantic_query": "tall buffet cabinet", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "outdoor lounge chair", "semantic_query": "outdoor lounge chair", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "living room designs", "semantic_query": "living room designs", "filters": {}, "error": null, "input_tokens": 1069, "output_tokens": 39}
+{"query": "chaise lounge couch", "semantic_query": "chaise lounge couch", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "aiden black velvet bed", "semantic_query": "aiden black velvet bed", "filters": {"product_class": ["Beds"], "color": ["black"]}, "error": null, "input_tokens": 1074, "output_tokens": 52}
+{"query": "day bed indian", "semantic_query": "day bed indian", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "deer coat hooks", "semantic_query": "deer coat hooks", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "5 gang light switch", "semantic_query": "5 gang light switch", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 42}
+{"query": "bubble guppies chair", "semantic_query": "bubble guppies chair", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "tye dye duvet cover", "semantic_query": "tie dye duvet cover", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "small wardrobe grey", "semantic_query": "small wardrobe", "filters": {"color": ["gray"]}, "error": null, "input_tokens": 1073, "output_tokens": 45}
+{"query": "carpet 5x6", "semantic_query": "carpet 5x6", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "wall design shelf", "semantic_query": "wall design shelf", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "midcentury tv unit", "semantic_query": "midcentury TV unit", "filters": {"style": ["mid-century modern"]}, "error": null, "input_tokens": 1073, "output_tokens": 309}
+{"query": "large bases", "semantic_query": "large bases", "filters": {}, "error": null, "input_tokens": 1068, "output_tokens": 38}
+{"query": "luau string lights", "semantic_query": "luau string lights", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "bistro sets patio", "semantic_query": "bistro set for patio", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "cake cutlery", "semantic_query": "cake cutlery", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "garage sports storage rack", "semantic_query": "garage sports storage rack", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "white abstract", "semantic_query": "white abstract", "filters": {"color": ["white"]}, "error": null, "input_tokens": 1069, "output_tokens": 41}
+{"query": "rock climbing wall kids", "semantic_query": "rock climbing wall for kids", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 45}
+{"query": "elephant framed", "semantic_query": "elephant framed wall art", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 43}
+{"query": "chair pillow cushion", "semantic_query": "chair pillow cushion", "filters": {}, "error": null, "input_tokens": 1073, "output_tokens": 43}
+{"query": "hardwood beds", "semantic_query": "hardwood beds", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "worn leather office chair", "semantic_query": "worn leather office chair", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "emma headboard", "semantic_query": "emma headboard", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 40}
+{"query": "garage door mail slot", "semantic_query": "garage door mail slot", "filters": {}, "error": null, "input_tokens": 1072, "output_tokens": 42}
+{"query": "pictures to hang over fireplace", "semantic_query": "wall art pictures to hang over fireplace", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 49}
+{"query": "rattan truck", "semantic_query": "rattan truck", "filters": {}, "error": null, "input_tokens": 1070, "output_tokens": 139}
+{"query": "48 inch kitchen hood", "semantic_query": "48 inch kitchen hood", "filters": {}, "error": null, "input_tokens": 1076, "output_tokens": 45}
+{"query": "pedistole sink", "semantic_query": "pedestal sink", "filters": {}, "error": null, "input_tokens": 1071, "output_tokens": 41}
+{"query": "rustic twig", "semantic_query": "rustic twig", "filters": {"style": ["rustic"]}, "error": null, "input_tokens": 1070, "output_tokens": 44}
+{"query": "54 in bench cushion", "semantic_query": "54 inch bench cushion", "filters": {}, "error": null, "input_tokens": 1074, "output_tokens": 44}
+{"query": "nespresso vertuo next premium by breville with aeroccino", "semantic_query": "nespresso vertuo next premium by breville with aeroccino", "filters": {}, "error": null, "input_tokens": 1085, "output_tokens": 55}
